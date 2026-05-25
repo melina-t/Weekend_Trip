@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- ============================================================
        PAGE TITLE — change this to whatever you like
        ============================================================ -->
-  <title>SLC → Jackson | Weekend Road Trip</title>
+  <title>SLC → National Parks | Weekend Road Trip</title>
 
   <!-- Google Fonts: Playfair Display (headings) + Lora (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:wght@400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:wght@400;500&display=swap"
+    rel="stylesheet" />
 
   <!-- ============================================================
        ALL CSS — edit colors/fonts in the :root variables below
@@ -21,26 +24,42 @@
        Change these to retheme the whole page at once.
        ──────────────────────────────────────────────────────────── */
     :root {
-      --forest:      #2d4a2d;   /* deep forest green — headers, accents */
-      --pine:        #3d6b3d;   /* mid green — buttons, highlights */
-      --sage:        #7a9e7e;   /* sage green — secondary text, borders */
-      --moss:        #c4d4b0;   /* light moss — card backgrounds */
-      --earth:       #8b6914;   /* warm earth/amber — highlights */
-      --bark:        #5c4a2a;   /* dark bark — body text */
-      --parchment:   #f5f0e8;   /* off-white parchment — page background */
-      --cream:       #fdfaf4;   /* near-white — card surfaces */
-      --stone:       #9e9580;   /* muted stone — muted text */
-      --checked:     #e8f2e8;   /* pale green — checked checklist items */
+      --forest: #2d4a2d;
+      /* deep forest green — headers, accents */
+      --pine: #3d6b3d;
+      /* mid green — buttons, highlights */
+      --sage: #7a9e7e;
+      /* sage green — secondary text, borders */
+      --moss: #c4d4b0;
+      /* light moss — card backgrounds */
+      --earth: #8b6914;
+      /* warm earth/amber — highlights */
+      --bark: #5c4a2a;
+      /* dark bark — body text */
+      --parchment: #f5f0e8;
+      /* off-white parchment — page background */
+      --cream: #fdfaf4;
+      /* near-white — card surfaces */
+      --stone: #9e9580;
+      /* muted stone — muted text */
+      --checked: #e8f2e8;
+      /* pale green — checked checklist items */
 
-      --font-head:   'Playfair Display', Georgia, serif;
-      --font-body:   'Lora', Georgia, serif;
-      --radius:      10px;
-      --shadow:      0 4px 18px rgba(45,74,45,.13);
-      --transition:  .22s ease;
+      --font-head: 'Playfair Display', Georgia, serif;
+      --font-body: 'Lora', Georgia, serif;
+      --radius: 10px;
+      --shadow: 0 4px 18px rgba(45, 74, 45, .13);
+      --transition: .22s ease;
     }
 
     /* ── RESET & BASE ─────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       background: var(--parchment);
@@ -50,13 +69,39 @@
       line-height: 1.65;
     }
 
-    h1, h2, h3 { font-family: var(--font-head); color: var(--forest); line-height: 1.2; }
-    h2 { font-size: 1.65rem; margin-bottom: .5rem; }
-    h3 { font-size: 1.2rem; margin-bottom: .4rem; }
-    a  { color: var(--pine); }
-    a:hover { color: var(--earth); }
-    p  { margin-bottom: .75rem; }
-    p:last-child { margin-bottom: 0; }
+    h1,
+    h2,
+    h3 {
+      font-family: var(--font-head);
+      color: var(--forest);
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: 1.65rem;
+      margin-bottom: .5rem;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-bottom: .4rem;
+    }
+
+    a {
+      color: var(--pine);
+    }
+
+    a:hover {
+      color: var(--earth);
+    }
+
+    p {
+      margin-bottom: .75rem;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
 
     /* ── LAYOUT WRAPPER ─────────────────────────────────────────── */
     .container {
@@ -91,6 +136,7 @@
       text-transform: uppercase;
       margin-bottom: 1rem;
     }
+
     .section-label::before,
     .section-label::after {
       content: '';
@@ -115,10 +161,24 @@
       text-decoration: none;
       transition: background var(--transition), transform var(--transition);
     }
-    .btn:hover  { background: var(--forest); color: #fff; transform: translateY(-1px); }
-    .btn:active { transform: translateY(0); }
-    .btn-earth  { background: var(--earth); }
-    .btn-earth:hover { background: var(--bark); }
+
+    .btn:hover {
+      background: var(--forest);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-earth {
+      background: var(--earth);
+    }
+
+    .btn-earth:hover {
+      background: var(--bark);
+    }
 
     /* ═══════════════════════════════════════════════════════════
        1. HEADER
@@ -130,21 +190,21 @@
       position: relative;
       overflow: hidden;
     }
+
     /* subtle pine-tree silhouette texture */
     header::before {
       content: '';
       position: absolute;
       inset: 0;
       background:
-        repeating-linear-gradient(
-          170deg,
+        repeating-linear-gradient(170deg,
           transparent 0,
           transparent 28px,
-          rgba(255,255,255,.03) 28px,
-          rgba(255,255,255,.03) 29px
-        );
+          rgba(255, 255, 255, .03) 28px,
+          rgba(255, 255, 255, .03) 29px);
       pointer-events: none;
     }
+
     .header-inner {
       max-width: 860px;
       margin: 0 auto;
@@ -154,6 +214,7 @@
       position: relative;
       z-index: 1;
     }
+
     /* ── CHANGE THE TRIP TITLE & DATES HERE ── */
     .trip-eyebrow {
       font-size: .8rem;
@@ -161,12 +222,14 @@
       text-transform: uppercase;
       opacity: .75;
     }
+
     .trip-title {
       font-family: var(--font-head);
       font-size: clamp(1.9rem, 5vw, 3rem);
       color: #fff;
       letter-spacing: -.01em;
     }
+
     .trip-subtitle {
       font-style: italic;
       opacity: .8;
@@ -176,8 +239,8 @@
     /* ── WEATHER WIDGET ─────────────────────────────────────── */
     .weather-strip {
       margin-top: 1.2rem;
-      background: rgba(255,255,255,.1);
-      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255, 255, 255, .1);
+      border: 1px solid rgba(255, 255, 255, .18);
       border-radius: var(--radius);
       padding: .9rem 1.2rem;
       display: flex;
@@ -185,6 +248,7 @@
       gap: 1rem;
       align-items: center;
     }
+
     .weather-location {
       font-family: var(--font-head);
       font-size: .85rem;
@@ -193,18 +257,29 @@
       text-transform: uppercase;
       letter-spacing: .06em;
     }
+
     .weather-now {
       display: flex;
       align-items: center;
       gap: .6rem;
     }
+
     .weather-temp {
       font-family: var(--font-head);
       font-size: 2rem;
       line-height: 1;
     }
-    .weather-desc { font-size: .9rem; opacity: .85; }
-    .weather-meta { font-size: .8rem; opacity: .7; margin-top: .2rem; }
+
+    .weather-desc {
+      font-size: .9rem;
+      opacity: .85;
+    }
+
+    .weather-meta {
+      font-size: .8rem;
+      opacity: .7;
+      margin-top: .2rem;
+    }
 
     .weather-forecast {
       display: flex;
@@ -212,14 +287,23 @@
       flex-wrap: wrap;
       margin-left: auto;
     }
+
     .forecast-day {
       text-align: center;
       font-size: .78rem;
       opacity: .85;
       min-width: 48px;
     }
-    .forecast-day strong { display: block; margin-bottom: .1rem; }
-    .forecast-icon { font-size: 1.3rem; line-height: 1.2; }
+
+    .forecast-day strong {
+      display: block;
+      margin-bottom: .1rem;
+    }
+
+    .forecast-icon {
+      font-size: 1.3rem;
+      line-height: 1.2;
+    }
 
     #weather-error {
       font-size: .85rem;
@@ -235,7 +319,13 @@
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.2rem;
     }
-    .lodging-card { display: flex; flex-direction: column; gap: .5rem; }
+
+    .lodging-card {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+
     .lodging-badge {
       display: inline-block;
       background: var(--moss);
@@ -248,6 +338,7 @@
       padding: .15rem .5rem;
       margin-bottom: .3rem;
     }
+
     /* ── LODGING DETAIL ROWS ─── */
     .lodging-detail {
       display: flex;
@@ -256,6 +347,7 @@
       color: var(--bark);
       line-height: 1.4;
     }
+
     .lodging-detail span:first-child {
       min-width: 80px;
       color: var(--stone);
@@ -264,7 +356,13 @@
       text-transform: uppercase;
       letter-spacing: .04em;
     }
-    .lodging-actions { margin-top: .6rem; display: flex; gap: .6rem; flex-wrap: wrap; }
+
+    .lodging-actions {
+      margin-top: .6rem;
+      display: flex;
+      gap: .6rem;
+      flex-wrap: wrap;
+    }
 
     /* ═══════════════════════════════════════════════════════════
        3. PACKING CHECKLIST
@@ -275,6 +373,7 @@
       margin-bottom: 1rem;
       flex-wrap: wrap;
     }
+
     .checklist-progress-bar {
       height: 6px;
       background: var(--moss);
@@ -282,12 +381,14 @@
       overflow: hidden;
       margin-bottom: 1rem;
     }
+
     .checklist-progress-fill {
       height: 100%;
       background: var(--pine);
       border-radius: 3px;
       transition: width .4s ease;
     }
+
     .checklist-status {
       font-size: .82rem;
       color: var(--stone);
@@ -305,7 +406,10 @@
       padding-bottom: .3rem;
       border-bottom: 1px solid var(--moss);
     }
-    .checklist-category:first-of-type { margin-top: 0; }
+
+    .checklist-category:first-of-type {
+      margin-top: 0;
+    }
 
     /* ── CHECKLIST ITEMS ── */
     .checklist-list {
@@ -314,6 +418,7 @@
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: .3rem;
     }
+
     .checklist-item {
       display: flex;
       align-items: center;
@@ -326,16 +431,22 @@
       border: 1px solid transparent;
       user-select: none;
     }
-    .checklist-item:hover { background: var(--moss); }
-    .checklist-item.done  {
+
+    .checklist-item:hover {
+      background: var(--moss);
+    }
+
+    .checklist-item.done {
       background: var(--checked);
       border-color: var(--sage);
       color: var(--stone);
       text-decoration: line-through;
     }
+
     .checklist-item input[type="checkbox"] {
       accent-color: var(--pine);
-      width: 16px; height: 16px;
+      width: 16px;
+      height: 16px;
       flex-shrink: 0;
       cursor: pointer;
     }
@@ -350,6 +461,7 @@
       align-items: flex-end;
       margin-bottom: 1.4rem;
     }
+
     .eta-input-row label {
       font-size: .82rem;
       text-transform: uppercase;
@@ -358,6 +470,7 @@
       display: block;
       margin-bottom: .3rem;
     }
+
     .eta-input-row input[type="time"],
     .eta-input-row select {
       background: var(--parchment);
@@ -370,14 +483,18 @@
       outline: none;
       transition: border-color var(--transition);
     }
+
     .eta-input-row input[type="time"]:focus,
-    .eta-input-row select:focus { border-color: var(--pine); }
+    .eta-input-row select:focus {
+      border-color: var(--pine);
+    }
 
     .eta-results {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1rem;
     }
+
     .eta-stop {
       background: var(--parchment);
       border: 1.5px solid var(--moss);
@@ -386,30 +503,50 @@
       position: relative;
       overflow: hidden;
     }
+
     .eta-stop::before {
       content: '';
       position: absolute;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 4px;
       height: 100%;
       background: var(--pine);
       border-radius: 3px 0 0 3px;
     }
+
     .eta-stop h4 {
       font-family: var(--font-head);
       font-size: 1rem;
       color: var(--forest);
       margin-bottom: .2rem;
     }
-    .eta-drive { font-size: .8rem; color: var(--stone); margin-bottom: .5rem; }
+
+    .eta-drive {
+      font-size: .8rem;
+      color: var(--stone);
+      margin-bottom: .5rem;
+    }
+
     .eta-time {
       font-family: var(--font-head);
       font-size: 1.6rem;
       color: var(--earth);
       letter-spacing: -.01em;
     }
-    .eta-date { font-size: .78rem; color: var(--stone); margin-top: .1rem; }
-    .eta-note { font-size: .78rem; color: var(--sage); margin-top: .3rem; font-style: italic; }
+
+    .eta-date {
+      font-size: .78rem;
+      color: var(--stone);
+      margin-top: .1rem;
+    }
+
+    .eta-note {
+      font-size: .78rem;
+      color: var(--sage);
+      margin-top: .3rem;
+      font-style: italic;
+    }
 
     /* ═══════════════════════════════════════════════════════════
        5. ITINERARY
@@ -417,12 +554,14 @@
     .itinerary-day {
       margin-bottom: 1.6rem;
     }
+
     .day-header {
       display: flex;
       align-items: center;
       gap: .8rem;
       margin-bottom: .8rem;
     }
+
     .day-pill {
       background: var(--forest);
       color: #fff;
@@ -433,6 +572,7 @@
       letter-spacing: .05em;
       white-space: nowrap;
     }
+
     .day-title {
       font-family: var(--font-head);
       font-size: 1.1rem;
@@ -449,20 +589,24 @@
       flex-direction: column;
       gap: 1rem;
     }
+
     .stop-list li {
       position: relative;
     }
+
     .stop-list li::before {
       content: '';
       position: absolute;
       left: -1.8rem;
       top: .45rem;
-      width: 10px; height: 10px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       background: var(--pine);
       border: 2px solid var(--cream);
       box-shadow: 0 0 0 2px var(--pine);
     }
+
     .stop-time {
       font-size: .78rem;
       color: var(--stone);
@@ -470,12 +614,18 @@
       letter-spacing: .05em;
       margin-bottom: .1rem;
     }
+
     .stop-name {
       font-family: var(--font-head);
       font-size: 1rem;
       color: var(--forest);
     }
-    .stop-desc { font-size: .88rem; color: var(--bark); }
+
+    .stop-desc {
+      font-size: .88rem;
+      color: var(--bark);
+    }
+
     .stop-tip {
       display: inline-block;
       margin-top: .3rem;
@@ -493,27 +643,39 @@
       gap: 1rem;
       margin-top: .6rem;
     }
+
     .dining-card {
       border-left: 3px solid var(--earth);
       padding-left: .9rem;
     }
+
     .dining-card h4 {
       font-family: var(--font-head);
       font-size: 1rem;
       color: var(--forest);
       margin-bottom: .2rem;
     }
+
     .dining-tag {
       display: inline-block;
-      background: rgba(139,105,20,.12);
+      background: rgba(139, 105, 20, .12);
       color: var(--earth);
       font-size: .73rem;
       padding: .1rem .4rem;
       border-radius: 4px;
       margin-bottom: .3rem;
     }
-    .dining-card p { font-size: .86rem; color: var(--bark); }
-    .dining-card .btn { margin-top: .5rem; font-size: .8rem; padding: .35rem .7rem; }
+
+    .dining-card p {
+      font-size: .86rem;
+      color: var(--bark);
+    }
+
+    .dining-card .btn {
+      margin-top: .5rem;
+      font-size: .8rem;
+      padding: .35rem .7rem;
+    }
 
     /* ── FOOTER ─────────────────────────────────────────────── */
     footer {
@@ -530,34 +692,70 @@
        Breakpoints: 600px (tablet) and 860px (desktop)
        ═══════════════════════════════════════════════════════════ */
     @media (max-width: 600px) {
-      h2 { font-size: 1.35rem; }
+      h2 {
+        font-size: 1.35rem;
+      }
 
-      .header-inner { gap: .3rem; }
-      .trip-title   { font-size: 1.7rem; }
+      .header-inner {
+        gap: .3rem;
+      }
+
+      .trip-title {
+        font-size: 1.7rem;
+      }
 
       /* stack weather vertically */
-      .weather-strip    { flex-direction: column; align-items: flex-start; gap: .7rem; }
-      .weather-forecast { margin-left: 0; }
+      .weather-strip {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: .7rem;
+      }
 
-      .checklist-list   { grid-template-columns: 1fr 1fr; }
+      .weather-forecast {
+        margin-left: 0;
+      }
+
+      .checklist-list {
+        grid-template-columns: 1fr 1fr;
+      }
 
       /* ETA inputs stack */
-      .eta-input-row { flex-direction: column; align-items: stretch; }
-      .eta-results   { grid-template-columns: 1fr; }
+      .eta-input-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
 
-      .lodging-grid  { grid-template-columns: 1fr; }
-      .dining-grid   { grid-template-columns: 1fr; }
+      .eta-results {
+        grid-template-columns: 1fr;
+      }
 
-      .card { padding: 1rem 1.1rem; }
+      .lodging-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .dining-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 1rem 1.1rem;
+      }
     }
 
     @media (min-width: 601px) and (max-width: 860px) {
-      .trip-title { font-size: 2.2rem; }
+      .trip-title {
+        font-size: 2.2rem;
+      }
     }
 
     /* ── UTILITY ─────────────────────────────────────────────── */
-    .mt-sm { margin-top: .5rem; }
-    .mt-md { margin-top: 1rem; }
+    .mt-sm {
+      margin-top: .5rem;
+    }
+
+    .mt-md {
+      margin-top: 1rem;
+    }
   </style>
 </head>
 
@@ -656,7 +854,8 @@
 
             <div class="lodging-actions">
               <!-- ↓ PASTE YOUR GOOGLE MAPS LINK in href ↓ -->
-              <a class="btn" href="https://maps.google.com/?q=215+N+Cache+St,+Jackson,+WY+83001" target="_blank" rel="noopener">
+              <a class="btn" href="https://maps.google.com/?q=215+N+Cache+St,+Jackson,+WY+83001" target="_blank"
+                rel="noopener">
                 📍 Google Maps
               </a>
               <!-- ↓ OPTIONAL: link to booking confirmation ↓ -->
@@ -701,7 +900,8 @@
 
             <div class="lodging-actions">
               <!-- ↓ PASTE YOUR GOOGLE MAPS LINK in href ↓ -->
-              <a class="btn" href="https://maps.google.com/?q=3335+WY-390,+Teton+Village,+WY+83025" target="_blank" rel="noopener">
+              <a class="btn" href="https://maps.google.com/?q=3335+WY-390,+Teton+Village,+WY+83025" target="_blank"
+                rel="noopener">
                 📍 Google Maps
               </a>
               <a class="btn btn-earth" href="#" target="_blank" rel="noopener">
@@ -742,45 +942,68 @@
                ─────────────────────────────────────────────────── -->
           <p class="checklist-category">🐻 Safety</p>
           <ul class="checklist-list" id="checklist-items">
-            <li class="checklist-item" data-item="bear-spray"    onclick="toggleItem(this)"><input type="checkbox" /> Bear Spray</li>
-            <li class="checklist-item" data-item="first-aid"     onclick="toggleItem(this)"><input type="checkbox" /> First Aid Kit</li>
-            <li class="checklist-item" data-item="whistle"       onclick="toggleItem(this)"><input type="checkbox" /> Emergency Whistle</li>
-            <li class="checklist-item" data-item="headlamp"      onclick="toggleItem(this)"><input type="checkbox" /> Headlamp + Batteries</li>
-            <li class="checklist-item" data-item="sunscreen"     onclick="toggleItem(this)"><input type="checkbox" /> Sunscreen SPF 50</li>
-            <li class="checklist-item" data-item="bug-spray"     onclick="toggleItem(this)"><input type="checkbox" /> Bug Spray</li>
+            <li class="checklist-item" data-item="bear-spray" onclick="toggleItem(this)"><input type="checkbox" /> Bear
+              Spray</li>
+            <li class="checklist-item" data-item="first-aid" onclick="toggleItem(this)"><input type="checkbox" /> First
+              Aid Kit</li>
+            <li class="checklist-item" data-item="whistle" onclick="toggleItem(this)"><input type="checkbox" />
+              Emergency Whistle</li>
+            <li class="checklist-item" data-item="headlamp" onclick="toggleItem(this)"><input type="checkbox" />
+              Headlamp + Batteries</li>
+            <li class="checklist-item" data-item="sunscreen" onclick="toggleItem(this)"><input type="checkbox" />
+              Sunscreen SPF 50</li>
+            <li class="checklist-item" data-item="bug-spray" onclick="toggleItem(this)"><input type="checkbox" /> Bug
+              Spray</li>
           </ul>
 
           <!-- ── CATEGORY: CLOTHING ──────────────────────────── -->
           <p class="checklist-category">👟 Clothing & Footwear</p>
           <ul class="checklist-list">
-            <li class="checklist-item" data-item="hiking-boots"  onclick="toggleItem(this)"><input type="checkbox" /> Hiking Boots</li>
-            <li class="checklist-item" data-item="rain-jacket"   onclick="toggleItem(this)"><input type="checkbox" /> Rain Jacket</li>
-            <li class="checklist-item" data-item="warm-layer"    onclick="toggleItem(this)"><input type="checkbox" /> Warm Fleece / Layer</li>
-            <li class="checklist-item" data-item="hiking-socks"  onclick="toggleItem(this)"><input type="checkbox" /> Wool Hiking Socks (x3)</li>
-            <li class="checklist-item" data-item="hat"           onclick="toggleItem(this)"><input type="checkbox" /> Sun Hat</li>
-            <li class="checklist-item" data-item="gloves"        onclick="toggleItem(this)"><input type="checkbox" /> Light Gloves</li>
+            <li class="checklist-item" data-item="hiking-boots" onclick="toggleItem(this)"><input type="checkbox" />
+              Hiking Boots</li>
+            <li class="checklist-item" data-item="rain-jacket" onclick="toggleItem(this)"><input type="checkbox" /> Rain
+              Jacket</li>
+            <li class="checklist-item" data-item="warm-layer" onclick="toggleItem(this)"><input type="checkbox" /> Warm
+              Fleece / Layer</li>
+            <li class="checklist-item" data-item="hiking-socks" onclick="toggleItem(this)"><input type="checkbox" />
+              Wool Hiking Socks (x3)</li>
+            <li class="checklist-item" data-item="hat" onclick="toggleItem(this)"><input type="checkbox" /> Sun Hat</li>
+            <li class="checklist-item" data-item="gloves" onclick="toggleItem(this)"><input type="checkbox" /> Light
+              Gloves</li>
           </ul>
 
           <!-- ── CATEGORY: GEAR ─────────────────────────────── -->
           <p class="checklist-category">⛺ Gear</p>
           <ul class="checklist-list">
-            <li class="checklist-item" data-item="daypack"       onclick="toggleItem(this)"><input type="checkbox" /> Daypack</li>
-            <li class="checklist-item" data-item="water-bottle"  onclick="toggleItem(this)"><input type="checkbox" /> Water Bottle (32oz)</li>
-            <li class="checklist-item" data-item="trekking-poles"onclick="toggleItem(this)"><input type="checkbox" /> Trekking Poles</li>
-            <li class="checklist-item" data-item="binoculars"    onclick="toggleItem(this)"><input type="checkbox" /> Binoculars</li>
-            <li class="checklist-item" data-item="camera"        onclick="toggleItem(this)"><input type="checkbox" /> Camera + Charger</li>
-            <li class="checklist-item" data-item="map"           onclick="toggleItem(this)"><input type="checkbox" /> Park Map / AllTrails</li>
+            <li class="checklist-item" data-item="daypack" onclick="toggleItem(this)"><input type="checkbox" /> Daypack
+            </li>
+            <li class="checklist-item" data-item="water-bottle" onclick="toggleItem(this)"><input type="checkbox" />
+              Water Bottle (32oz)</li>
+            <li class="checklist-item" data-item="trekking-poles" onclick="toggleItem(this)"><input type="checkbox" />
+              Trekking Poles</li>
+            <li class="checklist-item" data-item="binoculars" onclick="toggleItem(this)"><input type="checkbox" />
+              Binoculars</li>
+            <li class="checklist-item" data-item="camera" onclick="toggleItem(this)"><input type="checkbox" /> Camera +
+              Charger</li>
+            <li class="checklist-item" data-item="map" onclick="toggleItem(this)"><input type="checkbox" /> Park Map /
+              AllTrails</li>
           </ul>
 
           <!-- ── CATEGORY: FOOD & SUPPLIES ─────────────────── -->
           <p class="checklist-category">🥾 Snacks & Supplies</p>
           <ul class="checklist-list">
-            <li class="checklist-item" data-item="snacks"        onclick="toggleItem(this)"><input type="checkbox" /> Trail Mix / Snacks</li>
-            <li class="checklist-item" data-item="cooler"        onclick="toggleItem(this)"><input type="checkbox" /> Cooler + Ice</li>
-            <li class="checklist-item" data-item="cash"          onclick="toggleItem(this)"><input type="checkbox" /> Cash (cell service is spotty)</li>
-            <li class="checklist-item" data-item="nps-pass"      onclick="toggleItem(this)"><input type="checkbox" /> National Parks Pass</li>
-            <li class="checklist-item" data-item="charger"       onclick="toggleItem(this)"><input type="checkbox" /> Car Charger / Power Bank</li>
-            <li class="checklist-item" data-item="downloaded-maps"onclick="toggleItem(this)"><input type="checkbox" /> Offline Maps Downloaded</li>
+            <li class="checklist-item" data-item="snacks" onclick="toggleItem(this)"><input type="checkbox" /> Trail Mix
+              / Snacks</li>
+            <li class="checklist-item" data-item="cooler" onclick="toggleItem(this)"><input type="checkbox" /> Cooler +
+              Ice</li>
+            <li class="checklist-item" data-item="cash" onclick="toggleItem(this)"><input type="checkbox" /> Cash (cell
+              service is spotty)</li>
+            <li class="checklist-item" data-item="nps-pass" onclick="toggleItem(this)"><input type="checkbox" />
+              National Parks Pass</li>
+            <li class="checklist-item" data-item="charger" onclick="toggleItem(this)"><input type="checkbox" /> Car
+              Charger / Power Bank</li>
+            <li class="checklist-item" data-item="downloaded-maps" onclick="toggleItem(this)"><input type="checkbox" />
+              Offline Maps Downloaded</li>
           </ul>
 
         </div><!-- /card -->
@@ -848,7 +1071,8 @@
             <li>
               <div class="stop-time">8:00 AM</div>
               <div class="stop-name">Depart Salt Lake City</div>
-              <div class="stop-desc">Fill up gas, grab coffee. Take I-15 N → US-189 N → US-26 E. About 4.5–5 hrs depending on stops.</div>
+              <div class="stop-desc">Fill up gas, grab coffee. Take I-15 N → US-189 N → US-26 E. About 4.5–5 hrs
+                depending on stops.</div>
             </li>
 
             <!-- ── STOP: SNAKE RIVER CANYON ── -->
@@ -864,7 +1088,8 @@
             <li>
               <div class="stop-time">~1:00 PM</div>
               <div class="stop-name">Arrive Jackson, WY</div>
-              <div class="stop-desc">Check into lodging, walk the town square with antler arches. Browse galleries on Broadway.</div>
+              <div class="stop-desc">Check into lodging, walk the town square with antler arches. Browse galleries on
+                Broadway.</div>
               <span class="stop-tip">🦌 Elk antler arches at Town Square</span>
             </li>
 
@@ -892,34 +1117,39 @@
               <div class="stop-time">7:00 AM</div>
               <div class="stop-name">Early Start — Jenny Lake</div>
               <!-- ↓ Edit description ↓ -->
-              <div class="stop-desc">Drive to Jenny Lake (30 min from Jackson). Take the ferry across ($20 RT) to cut 2 miles off the Hidden Falls / Inspiration Point hike. Arrive early to beat crowds and find parking.</div>
+              <div class="stop-desc">Drive to Jenny Lake (30 min from Jackson). Take the ferry across ($20 RT) to cut 2
+                miles off the Hidden Falls / Inspiration Point hike. Arrive early to beat crowds and find parking.</div>
               <span class="stop-tip">⛴ Ferry runs 7 AM–7 PM · Cash or card</span>
             </li>
 
             <li>
               <div class="stop-time">9:00 AM</div>
               <div class="stop-name">Inspiration Point Hike</div>
-              <div class="stop-desc">~4.5 miles round trip with ferry. Moderate difficulty. Stunning views of Jenny Lake and the Tetons. Allow 3–4 hours.</div>
+              <div class="stop-desc">~4.5 miles round trip with ferry. Moderate difficulty. Stunning views of Jenny Lake
+                and the Tetons. Allow 3–4 hours.</div>
               <span class="stop-tip">🥾 Bring bear spray & plenty of water</span>
             </li>
 
             <li>
               <div class="stop-time">1:00 PM</div>
               <div class="stop-name">Signal Mountain Summit Road</div>
-              <div class="stop-desc">Drive the 5-mile summit road for a panoramic view of the entire valley and Jackson Lake. No hiking required.</div>
+              <div class="stop-desc">Drive the 5-mile summit road for a panoramic view of the entire valley and Jackson
+                Lake. No hiking required.</div>
             </li>
 
             <li>
               <div class="stop-time">3:00 PM</div>
               <div class="stop-name">Oxbow Bend Wildlife Viewing</div>
-              <div class="stop-desc">Prime spot for moose, bald eagles, and great blue herons along the Snake River. Bring binoculars.</div>
+              <div class="stop-desc">Prime spot for moose, bald eagles, and great blue herons along the Snake River.
+                Bring binoculars.</div>
               <span class="stop-tip">🦅 Best wildlife early morning or evening</span>
             </li>
 
             <li>
               <div class="stop-time">7:00 PM</div>
               <div class="stop-name">Dinner + Sunset</div>
-              <div class="stop-desc">Return to Jackson for dinner. Catch sunset at Schwabacher Landing for iconic Teton reflections if sky is clear.</div>
+              <div class="stop-desc">Return to Jackson for dinner. Catch sunset at Schwabacher Landing for iconic Teton
+                reflections if sky is clear.</div>
               <span class="stop-tip">🌅 Schwabacher Landing: 4 miles S of Moose Junction</span>
             </li>
 
@@ -939,13 +1169,15 @@
             <li>
               <div class="stop-time">7:00 AM</div>
               <div class="stop-name">Check Out &amp; Head North</div>
-              <div class="stop-desc">Check out by 11 AM but leave bags at hotel. Drive north through Grand Teton to Yellowstone South Entrance (about 1 hr 15 min from Jackson).</div>
+              <div class="stop-desc">Check out by 11 AM but leave bags at hotel. Drive north through Grand Teton to
+                Yellowstone South Entrance (about 1 hr 15 min from Jackson).</div>
             </li>
 
             <li>
               <div class="stop-time">8:30 AM</div>
               <div class="stop-name">Yellowstone South Entrance</div>
-              <div class="stop-desc">Show your National Parks Pass. Head straight to the Geyser Basin loop before crowds arrive.</div>
+              <div class="stop-desc">Show your National Parks Pass. Head straight to the Geyser Basin loop before crowds
+                arrive.</div>
               <span class="stop-tip">🎫 NPS Pass covers both parks</span>
             </li>
 
@@ -953,21 +1185,24 @@
               <div class="stop-time">9:30 AM</div>
               <div class="stop-name">Old Faithful Geyser</div>
               <!-- ↓ Edit description ↓ -->
-              <div class="stop-desc">Check the eruption prediction board (usually within ±10 min). Erupts roughly every 90 minutes. Walk the Upper Geyser Basin boardwalk loop (~1.5 miles) for additional geysers.</div>
+              <div class="stop-desc">Check the eruption prediction board (usually within ±10 min). Erupts roughly every
+                90 minutes. Walk the Upper Geyser Basin boardwalk loop (~1.5 miles) for additional geysers.</div>
               <span class="stop-tip">⏱ Eruption predictions posted at the Visitor Center</span>
             </li>
 
             <li>
               <div class="stop-time">11:30 AM</div>
               <div class="stop-name">Grand Prismatic Spring (Midway Geyser Basin)</div>
-              <div class="stop-desc">The largest hot spring in the US. Drive ~5 min north. Take the overlook trail for the iconic aerial view of rainbow colors. Boardwalk at base level is also worth walking.</div>
+              <div class="stop-desc">The largest hot spring in the US. Drive ~5 min north. Take the overlook trail for
+                the iconic aerial view of rainbow colors. Boardwalk at base level is also worth walking.</div>
               <span class="stop-tip">🌈 Overlook trail: ~1 mile RT, great photos</span>
             </li>
 
             <li>
               <div class="stop-time">1:30 PM</div>
               <div class="stop-name">Head Back South</div>
-              <div class="stop-desc">Drive back through the Tetons to Jackson, pick up bags, and start the 5-hour drive back to SLC. Total drive home: ~5 hrs.</div>
+              <div class="stop-desc">Drive back through the Tetons to Jackson, pick up bags, and start the 5-hour drive
+                back to SLC. Total drive home: ~5 hrs.</div>
             </li>
 
             <li>
@@ -1000,9 +1235,11 @@
               <h4>The Bunnery</h4>
               <span class="dining-tag">☀️ Breakfast / Brunch</span>
               <!-- ↓ Edit description ↓ -->
-              <p>Local institution since 1979. Famous for OSM (oats, sunflower, millet) bread. Expect a wait on weekends — arrive early or check in for takeout.</p>
+              <p>Local institution since 1979. Famous for OSM (oats, sunflower, millet) bread. Expect a wait on weekends
+                — arrive early or check in for takeout.</p>
               <!-- ↓ PASTE GOOGLE MAPS LINK ↓ -->
-              <a class="btn" href="https://maps.google.com/?q=The+Bunnery+Jackson+WY" target="_blank" rel="noopener">📍 Maps</a>
+              <a class="btn" href="https://maps.google.com/?q=The+Bunnery+Jackson+WY" target="_blank" rel="noopener">📍
+                Maps</a>
             </div>
 
             <!-- ── RESTAURANT 2 ── -->
@@ -1010,8 +1247,10 @@
               <h4>Liberty Burger</h4>
               <span class="dining-tag">🍔 Casual / Lunch</span>
               <!-- ↓ Edit description ↓ -->
-              <p>Wyoming beef burgers with local elk and bison options. Great for a quick post-hike lunch. Locally sourced, no fuss.</p>
-              <a class="btn" href="https://maps.google.com/?q=Liberty+Burger+Jackson+WY" target="_blank" rel="noopener">📍 Maps</a>
+              <p>Wyoming beef burgers with local elk and bison options. Great for a quick post-hike lunch. Locally
+                sourced, no fuss.</p>
+              <a class="btn" href="https://maps.google.com/?q=Liberty+Burger+Jackson+WY" target="_blank"
+                rel="noopener">📍 Maps</a>
             </div>
 
             <!-- ── RESTAURANT 3 ── -->
@@ -1019,8 +1258,10 @@
               <h4>Persephone Bakery</h4>
               <span class="dining-tag">☕ Coffee / Pastries</span>
               <!-- ↓ Edit description ↓ -->
-              <p>Artisan bakery with outstanding espresso and croissants. Perfect for grabbing breakfast before an early park start. Beautiful outdoor seating.</p>
-              <a class="btn" href="https://maps.google.com/?q=Persephone+Bakery+Jackson+WY" target="_blank" rel="noopener">📍 Maps</a>
+              <p>Artisan bakery with outstanding espresso and croissants. Perfect for grabbing breakfast before an early
+                park start. Beautiful outdoor seating.</p>
+              <a class="btn" href="https://maps.google.com/?q=Persephone+Bakery+Jackson+WY" target="_blank"
+                rel="noopener">📍 Maps</a>
             </div>
 
             <!-- ── RESTAURANT 4 ── -->
@@ -1028,8 +1269,10 @@
               <h4>Snake River Grill</h4>
               <span class="dining-tag">🥩 Upscale / Dinner</span>
               <!-- ↓ Edit description ↓ -->
-              <p>Local favorite for special dinners. Wyoming game, fresh fish, and a stellar wine list in a warm, log-cabin atmosphere on Town Square. Reserve ahead.</p>
-              <a class="btn" href="https://maps.google.com/?q=Snake+River+Grill+Jackson+WY" target="_blank" rel="noopener">📍 Maps</a>
+              <p>Local favorite for special dinners. Wyoming game, fresh fish, and a stellar wine list in a warm,
+                log-cabin atmosphere on Town Square. Reserve ahead.</p>
+              <a class="btn" href="https://maps.google.com/?q=Snake+River+Grill+Jackson+WY" target="_blank"
+                rel="noopener">📍 Maps</a>
             </div>
 
             <!-- ── RESTAURANT 5 ── -->
@@ -1037,8 +1280,10 @@
               <h4>Anvil Bar &amp; Refuge</h4>
               <span class="dining-tag">🍺 Drinks / Late Night</span>
               <!-- ↓ Edit description ↓ -->
-              <p>Craft cocktails, cold beer, and a laid-back vibe. Connected to the Anvil Hotel. Great après-hike spot with a solid bar snack menu.</p>
-              <a class="btn" href="https://maps.google.com/?q=Anvil+Bar+and+Refuge+Jackson+WY" target="_blank" rel="noopener">📍 Maps</a>
+              <p>Craft cocktails, cold beer, and a laid-back vibe. Connected to the Anvil Hotel. Great après-hike spot
+                with a solid bar snack menu.</p>
+              <a class="btn" href="https://maps.google.com/?q=Anvil+Bar+and+Refuge+Jackson+WY" target="_blank"
+                rel="noopener">📍 Maps</a>
             </div>
 
             <!-- ── RESTAURANT 6 — blank placeholder ──
@@ -1047,7 +1292,8 @@
             <div class="dining-card">
               <h4>Your Pick Here</h4>
               <span class="dining-tag">🍽️ Category</span>
-              <p>Edit this card and add your own restaurant recommendation. Change the name, tag, description, and Google Maps link above.</p>
+              <p>Edit this card and add your own restaurant recommendation. Change the name, tag, description, and
+                Google Maps link above.</p>
               <a class="btn" href="#" target="_blank" rel="noopener">📍 Maps</a>
             </div>
 
@@ -1061,11 +1307,15 @@
         <div class="section-label">🔗 Quick Links</div>
         <div class="card" style="display:flex;flex-wrap:wrap;gap:.7rem;">
           <!-- ↓ Add / change any links here ↓ -->
-          <a class="btn" href="https://www.nps.gov/grte/planyourvisit/index.htm" target="_blank" rel="noopener">Grand Teton NPS</a>
-          <a class="btn" href="https://www.nps.gov/yell/planyourvisit/index.htm" target="_blank" rel="noopener">Yellowstone NPS</a>
-          <a class="btn" href="https://www.nps.gov/oldfaithful/faithfulprediction.htm" target="_blank" rel="noopener">Old Faithful Predictions</a>
+          <a class="btn" href="https://www.nps.gov/grte/planyourvisit/index.htm" target="_blank" rel="noopener">Grand
+            Teton NPS</a>
+          <a class="btn" href="https://www.nps.gov/yell/planyourvisit/index.htm" target="_blank"
+            rel="noopener">Yellowstone NPS</a>
+          <a class="btn" href="https://www.nps.gov/oldfaithful/faithfulprediction.htm" target="_blank"
+            rel="noopener">Old Faithful Predictions</a>
           <a class="btn btn-earth" href="https://www.recreation.gov/" target="_blank" rel="noopener">Recreation.gov</a>
-          <a class="btn btn-earth" href="https://www.alltrails.com/parks/us/wyoming/grand-teton-national-park" target="_blank" rel="noopener">AllTrails — Grand Teton</a>
+          <a class="btn btn-earth" href="https://www.alltrails.com/parks/us/wyoming/grand-teton-national-park"
+            target="_blank" rel="noopener">AllTrails — Grand Teton</a>
         </div>
       </section>
 
@@ -1077,7 +1327,8 @@
     <div class="container">
       <!-- ↓ CHANGE FOOTER TEXT ↓ -->
       <p>🌲 SLC → Jackson Hole · Weekend Adventure · Have a safe trip!</p>
-      <p style="margin-top:.3rem;font-size:.75rem;">Weather via <a href="https://open-meteo.com" target="_blank">Open-Meteo</a> (open-source, no key needed). Checklist saved locally on your device.</p>
+      <p style="margin-top:.3rem;font-size:.75rem;">Weather via <a href="https://open-meteo.com"
+          target="_blank">Open-Meteo</a> (open-source, no key needed). Checklist saved locally on your device.</p>
     </div>
   </footer>
 
@@ -1089,230 +1340,230 @@
        ── Section C: ETA Calculator
        ============================================================ -->
   <script>
-  /* ══════════════════════════════════════════════════════════════
-     SECTION A — WEATHER WIDGET
-     Uses Open-Meteo API (free, no API key required).
-     Fetches current conditions + 3-day daily forecast for Jackson.
+    /* ══════════════════════════════════════════════════════════════
+       SECTION A — WEATHER WIDGET
+       Uses Open-Meteo API (free, no API key required).
+       Fetches current conditions + 3-day daily forecast for Jackson.
+  
+       To change location:
+         1. Update LAT and LON below with new coordinates.
+            (Find coords on Google Maps: right-click → "What's here?")
+         2. Update the .weather-location label in the HTML above.
+       ══════════════════════════════════════════════════════════════ */
 
-     To change location:
-       1. Update LAT and LON below with new coordinates.
-          (Find coords on Google Maps: right-click → "What's here?")
-       2. Update the .weather-location label in the HTML above.
-     ══════════════════════════════════════════════════════════════ */
+    // ↓ JACKSON, WY coordinates — change if you want a different city
+    const WEATHER_LAT = 43.4799;
+    const WEATHER_LON = -110.7624;
 
-  // ↓ JACKSON, WY coordinates — change if you want a different city
-  const WEATHER_LAT = 43.4799;
-  const WEATHER_LON = -110.7624;
+    // WMO weather code → human-readable description + emoji
+    // Reference: https://open-meteo.com/en/docs#weathervariables
+    const WMO_CODES = {
+      0: ['Clear sky', '☀️'],
+      1: ['Mainly clear', '🌤️'], 2: ['Partly cloudy', '⛅'], 3: ['Overcast', '☁️'],
+      45: ['Fog', '🌫️'], 48: ['Icy fog', '🌫️'],
+      51: ['Light drizzle', '🌦️'], 53: ['Drizzle', '🌦️'], 55: ['Heavy drizzle', '🌧️'],
+      61: ['Light rain', '🌧️'], 63: ['Rain', '🌧️'], 65: ['Heavy rain', '🌧️'],
+      71: ['Light snow', '❄️'], 73: ['Snow', '❄️'], 75: ['Heavy snow', '❄️'],
+      77: ['Snow grains', '🌨️'],
+      80: ['Rain showers', '🌦️'], 81: ['Heavy showers', '🌧️'], 82: ['Violent showers', '⛈️'],
+      85: ['Snow showers', '🌨️'], 86: ['Heavy snow showers', '🌨️'],
+      95: ['Thunderstorm', '⛈️'], 96: ['Thunderstorm + hail', '⛈️'], 99: ['Thunderstorm + hail', '⛈️'],
+    };
 
-  // WMO weather code → human-readable description + emoji
-  // Reference: https://open-meteo.com/en/docs#weathervariables
-  const WMO_CODES = {
-    0: ['Clear sky', '☀️'],
-    1: ['Mainly clear', '🌤️'], 2: ['Partly cloudy', '⛅'], 3: ['Overcast', '☁️'],
-    45: ['Fog', '🌫️'], 48: ['Icy fog', '🌫️'],
-    51: ['Light drizzle', '🌦️'], 53: ['Drizzle', '🌦️'], 55: ['Heavy drizzle', '🌧️'],
-    61: ['Light rain', '🌧️'], 63: ['Rain', '🌧️'], 65: ['Heavy rain', '🌧️'],
-    71: ['Light snow', '❄️'], 73: ['Snow', '❄️'], 75: ['Heavy snow', '❄️'],
-    77: ['Snow grains', '🌨️'],
-    80: ['Rain showers', '🌦️'], 81: ['Heavy showers', '🌧️'], 82: ['Violent showers', '⛈️'],
-    85: ['Snow showers', '🌨️'], 86: ['Heavy snow showers', '🌨️'],
-    95: ['Thunderstorm', '⛈️'], 96: ['Thunderstorm + hail', '⛈️'], 99: ['Thunderstorm + hail', '⛈️'],
-  };
+    function wmoLabel(code) {
+      return WMO_CODES[code] || ['Unknown', '🌡️'];
+    }
 
-  function wmoLabel(code) {
-    return WMO_CODES[code] || ['Unknown', '🌡️'];
-  }
+    async function loadWeather() {
+      try {
+        const url = `https://api.open-meteo.com/v1/forecast?`
+          + `latitude=${WEATHER_LAT}&longitude=${WEATHER_LON}`
+          + `&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code`
+          + `&daily=weather_code,temperature_2m_max,temperature_2m_min`
+          + `&temperature_unit=fahrenheit`
+          + `&wind_speed_unit=mph`
+          + `&timezone=America/Denver`
+          + `&forecast_days=4`;
 
-  async function loadWeather() {
-    try {
-      const url = `https://api.open-meteo.com/v1/forecast?`
-        + `latitude=${WEATHER_LAT}&longitude=${WEATHER_LON}`
-        + `&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code`
-        + `&daily=weather_code,temperature_2m_max,temperature_2m_min`
-        + `&temperature_unit=fahrenheit`
-        + `&wind_speed_unit=mph`
-        + `&timezone=America/Denver`
-        + `&forecast_days=4`;
+        const res = await fetch(url);
+        const data = await res.json();
 
-      const res  = await fetch(url);
-      const data = await res.json();
+        // ── Current conditions ──────────────────────────────────
+        const c = data.current;
+        const [desc, icon] = wmoLabel(c.weather_code);
 
-      // ── Current conditions ──────────────────────────────────
-      const c   = data.current;
-      const [desc, icon] = wmoLabel(c.weather_code);
+        document.getElementById('w-temp').textContent =
+          Math.round(c.temperature_2m) + '°F';
+        document.getElementById('w-desc').textContent =
+          icon + ' ' + desc;
+        document.getElementById('w-meta').textContent =
+          `Humidity ${c.relative_humidity_2m}% · Wind ${Math.round(c.wind_speed_10m)} mph`;
 
-      document.getElementById('w-temp').textContent =
-        Math.round(c.temperature_2m) + '°F';
-      document.getElementById('w-desc').textContent =
-        icon + ' ' + desc;
-      document.getElementById('w-meta').textContent =
-        `Humidity ${c.relative_humidity_2m}% · Wind ${Math.round(c.wind_speed_10m)} mph`;
+        // ── 4-day forecast ──────────────────────────────────────
+        const d = data.daily;
+        const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        let forecastHTML = '';
 
-      // ── 4-day forecast ──────────────────────────────────────
-      const d = data.daily;
-      const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-      let forecastHTML = '';
-
-      for (let i = 0; i < 4; i++) {
-        const date   = new Date(d.time[i] + 'T12:00:00');
-        const dayName = i === 0 ? 'Today' : days[date.getDay()];
-        const [, fIcon] = wmoLabel(d.weather_code[i]);
-        const hi = Math.round(d.temperature_2m_max[i]);
-        const lo = Math.round(d.temperature_2m_min[i]);
-        forecastHTML += `
+        for (let i = 0; i < 4; i++) {
+          const date = new Date(d.time[i] + 'T12:00:00');
+          const dayName = i === 0 ? 'Today' : days[date.getDay()];
+          const [, fIcon] = wmoLabel(d.weather_code[i]);
+          const hi = Math.round(d.temperature_2m_max[i]);
+          const lo = Math.round(d.temperature_2m_min[i]);
+          forecastHTML += `
           <div class="forecast-day">
             <strong>${dayName}</strong>
             <div class="forecast-icon">${fIcon}</div>
             <div>${hi}° / ${lo}°</div>
           </div>`;
-      }
-      document.getElementById('w-forecast').innerHTML = forecastHTML;
+        }
+        document.getElementById('w-forecast').innerHTML = forecastHTML;
 
-    } catch (err) {
-      // If fetch fails (offline, etc.) show a polite fallback
-      document.getElementById('w-temp').style.display = 'none';
-      document.getElementById('w-desc').style.display = 'none';
-      document.getElementById('w-meta').style.display = 'none';
-      const errEl = document.getElementById('weather-error');
-      errEl.style.display = 'block';
-      errEl.textContent = '⚠️ Weather unavailable — check https://forecast.weather.gov';
+      } catch (err) {
+        // If fetch fails (offline, etc.) show a polite fallback
+        document.getElementById('w-temp').style.display = 'none';
+        document.getElementById('w-desc').style.display = 'none';
+        document.getElementById('w-meta').style.display = 'none';
+        const errEl = document.getElementById('weather-error');
+        errEl.style.display = 'block';
+        errEl.textContent = '⚠️ Weather unavailable — check https://forecast.weather.gov';
+      }
     }
-  }
 
-  // Load weather on page load
-  loadWeather();
+    // Load weather on page load
+    loadWeather();
 
 
-  /* ══════════════════════════════════════════════════════════════
-     SECTION B — PACKING CHECKLIST
-     Reads/writes to localStorage so state persists across sessions.
-     Storage key prefix: 'roadtrip_pack_'
+    /* ══════════════════════════════════════════════════════════════
+       SECTION B — PACKING CHECKLIST
+       Reads/writes to localStorage so state persists across sessions.
+       Storage key prefix: 'roadtrip_pack_'
+  
+       toggleItem(el)  — called when user clicks a list item
+       checkAll()      — marks everything done
+       clearAll()      — clears all checks
+       updateProgress()— refreshes the progress bar and counter
+       ══════════════════════════════════════════════════════════════ */
 
-     toggleItem(el)  — called when user clicks a list item
-     checkAll()      — marks everything done
-     clearAll()      — clears all checks
-     updateProgress()— refreshes the progress bar and counter
-     ══════════════════════════════════════════════════════════════ */
+    const STORAGE_PREFIX = 'roadtrip_pack_'; // change if you want a new namespace
 
-  const STORAGE_PREFIX = 'roadtrip_pack_'; // change if you want a new namespace
-
-  // Run on page load — restore saved state from localStorage
-  document.addEventListener('DOMContentLoaded', () => {
-    const items = document.querySelectorAll('.checklist-item');
-    items.forEach(item => {
-      const key  = STORAGE_PREFIX + item.dataset.item;
-      const done = localStorage.getItem(key) === 'true';
-      if (done) {
-        item.classList.add('done');
-        item.querySelector('input').checked = true;
-      }
+    // Run on page load — restore saved state from localStorage
+    document.addEventListener('DOMContentLoaded', () => {
+      const items = document.querySelectorAll('.checklist-item');
+      items.forEach(item => {
+        const key = STORAGE_PREFIX + item.dataset.item;
+        const done = localStorage.getItem(key) === 'true';
+        if (done) {
+          item.classList.add('done');
+          item.querySelector('input').checked = true;
+        }
+      });
+      updateProgress();
     });
-    updateProgress();
-  });
 
-  function toggleItem(el) {
-    const isDone = el.classList.toggle('done');
-    el.querySelector('input').checked = isDone;
-    // Save state to localStorage
-    localStorage.setItem(STORAGE_PREFIX + el.dataset.item, isDone);
-    updateProgress();
-  }
+    function toggleItem(el) {
+      const isDone = el.classList.toggle('done');
+      el.querySelector('input').checked = isDone;
+      // Save state to localStorage
+      localStorage.setItem(STORAGE_PREFIX + el.dataset.item, isDone);
+      updateProgress();
+    }
 
-  function checkAll() {
-    document.querySelectorAll('.checklist-item').forEach(el => {
-      el.classList.add('done');
-      el.querySelector('input').checked = true;
-      localStorage.setItem(STORAGE_PREFIX + el.dataset.item, 'true');
-    });
-    updateProgress();
-  }
+    function checkAll() {
+      document.querySelectorAll('.checklist-item').forEach(el => {
+        el.classList.add('done');
+        el.querySelector('input').checked = true;
+        localStorage.setItem(STORAGE_PREFIX + el.dataset.item, 'true');
+      });
+      updateProgress();
+    }
 
-  function clearAll() {
-    document.querySelectorAll('.checklist-item').forEach(el => {
-      el.classList.remove('done');
-      el.querySelector('input').checked = false;
-      localStorage.removeItem(STORAGE_PREFIX + el.dataset.item);
-    });
-    updateProgress();
-  }
+    function clearAll() {
+      document.querySelectorAll('.checklist-item').forEach(el => {
+        el.classList.remove('done');
+        el.querySelector('input').checked = false;
+        localStorage.removeItem(STORAGE_PREFIX + el.dataset.item);
+      });
+      updateProgress();
+    }
 
-  function updateProgress() {
-    const all     = document.querySelectorAll('.checklist-item');
-    const done    = document.querySelectorAll('.checklist-item.done');
-    const pct     = all.length ? Math.round((done.length / all.length) * 100) : 0;
-    document.getElementById('checklist-progress').style.width = pct + '%';
-    document.getElementById('checklist-status').textContent =
-      `${done.length} of ${all.length} packed${pct === 100 ? ' ✅ Ready to go!' : ''}`;
-  }
+    function updateProgress() {
+      const all = document.querySelectorAll('.checklist-item');
+      const done = document.querySelectorAll('.checklist-item.done');
+      const pct = all.length ? Math.round((done.length / all.length) * 100) : 0;
+      document.getElementById('checklist-progress').style.width = pct + '%';
+      document.getElementById('checklist-status').textContent =
+        `${done.length} of ${all.length} packed${pct === 100 ? ' ✅ Ready to go!' : ''}`;
+    }
 
 
-  /* ══════════════════════════════════════════════════════════════
-     SECTION C — ETA CALCULATOR
-     Drive times are in minutes from SLC.
-     To edit: change the 'offsetMin' values in etaStops below.
-     To add a stop: add a new object to the etaStops array.
+    /* ══════════════════════════════════════════════════════════════
+       SECTION C — ETA CALCULATOR
+       Drive times are in minutes from SLC.
+       To edit: change the 'offsetMin' values in etaStops below.
+       To add a stop: add a new object to the etaStops array.
+  
+       Format: { name, note, offsetMin, tip }
+         name      — display name of destination
+         note      — short drive-time description shown under name
+         offsetMin — total minutes from SLC departure
+         tip       — optional italic note shown in the card
+       ══════════════════════════════════════════════════════════════ */
 
-     Format: { name, note, offsetMin, tip }
-       name      — display name of destination
-       note      — short drive-time description shown under name
-       offsetMin — total minutes from SLC departure
-       tip       — optional italic note shown in the card
-     ══════════════════════════════════════════════════════════════ */
+    // ↓ EDIT THESE STOPS ↓ (offsetMin = total minutes from SLC)
+    const etaStops = [
+      {
+        name: 'Jackson, WY',
+        note: 'Via I-15 N + US-189 N + US-26 E',
+        offsetMin: 300,   // 5 hours
+        tip: 'Add ~30 min for stops & construction delays'
+      },
+      {
+        name: 'Grand Teton N.P. (South Entrance)',
+        note: '15 min north of Jackson',
+        offsetMin: 315,   // 5 hrs 15 min
+        tip: 'Moose Entrance · Jenny Lake is 10 min further'
+      },
+      {
+        name: 'Yellowstone South Entrance',
+        note: '1 hr 15 min north of Jackson',
+        offsetMin: 375,   // 6 hrs 15 min
+        tip: 'Old Faithful is ~30 min past the entrance'
+      },
+    ];
 
-  // ↓ EDIT THESE STOPS ↓ (offsetMin = total minutes from SLC)
-  const etaStops = [
-    {
-      name:      'Jackson, WY',
-      note:      'Via I-15 N + US-189 N + US-26 E',
-      offsetMin: 300,   // 5 hours
-      tip:       'Add ~30 min for stops & construction delays'
-    },
-    {
-      name:      'Grand Teton N.P. (South Entrance)',
-      note:      '15 min north of Jackson',
-      offsetMin: 315,   // 5 hrs 15 min
-      tip:       'Moose Entrance · Jenny Lake is 10 min further'
-    },
-    {
-      name:      'Yellowstone South Entrance',
-      note:      '1 hr 15 min north of Jackson',
-      offsetMin: 375,   // 6 hrs 15 min
-      tip:       'Old Faithful is ~30 min past the entrance'
-    },
-  ];
+    // Day labels — match your itinerary dates
+    // Index 0 = first option in the select, etc.
+    const DAY_LABELS = [
+      'Friday, July 11',
+      'Saturday, July 12',
+      'Sunday, July 13',
+    ];
 
-  // Day labels — match your itinerary dates
-  // Index 0 = first option in the select, etc.
-  const DAY_LABELS = [
-    'Friday, July 11',
-    'Saturday, July 12',
-    'Sunday, July 13',
-  ];
+    function calcETA() {
+      const timeVal = document.getElementById('depart-time').value; // "HH:MM"
+      const dayIdx = parseInt(document.getElementById('depart-day').value);
+      if (!timeVal) return;
 
-  function calcETA() {
-    const timeVal  = document.getElementById('depart-time').value; // "HH:MM"
-    const dayIdx   = parseInt(document.getElementById('depart-day').value);
-    if (!timeVal) return;
+      const [hh, mm] = timeVal.split(':').map(Number);
+      const departMinutes = hh * 60 + mm; // minutes since midnight
 
-    const [hh, mm]     = timeVal.split(':').map(Number);
-    const departMinutes = hh * 60 + mm; // minutes since midnight
+      const resultsEl = document.getElementById('eta-results');
+      resultsEl.innerHTML = '';
 
-    const resultsEl = document.getElementById('eta-results');
-    resultsEl.innerHTML = '';
+      etaStops.forEach(stop => {
+        const arrivalMin = departMinutes + stop.offsetMin;
+        const arrivalHour = Math.floor(arrivalMin / 60) % 24;
+        const arrivalMins = arrivalMin % 60;
+        const ampm = arrivalHour >= 12 ? 'PM' : 'AM';
+        const displayHour = arrivalHour % 12 || 12;
+        const displayMins = String(arrivalMins).padStart(2, '0');
 
-    etaStops.forEach(stop => {
-      const arrivalMin  = departMinutes + stop.offsetMin;
-      const arrivalHour = Math.floor(arrivalMin / 60) % 24;
-      const arrivalMins = arrivalMin % 60;
-      const ampm        = arrivalHour >= 12 ? 'PM' : 'AM';
-      const displayHour = arrivalHour % 12 || 12;
-      const displayMins = String(arrivalMins).padStart(2, '0');
+        // Determine if arrival is "next day" (crossed midnight)
+        const crossedMidnight = (departMinutes + stop.offsetMin) >= 1440;
+        const dayLabel = DAY_LABELS[dayIdx + (crossedMidnight ? 1 : 0)] || '';
 
-      // Determine if arrival is "next day" (crossed midnight)
-      const crossedMidnight = (departMinutes + stop.offsetMin) >= 1440;
-      const dayLabel = DAY_LABELS[dayIdx + (crossedMidnight ? 1 : 0)] || '';
-
-      resultsEl.innerHTML += `
+        resultsEl.innerHTML += `
         <div class="eta-stop">
           <h4>${stop.name}</h4>
           <div class="eta-drive">🚗 ${stop.note}</div>
@@ -1320,13 +1571,14 @@
           <div class="eta-date">${dayLabel}</div>
           ${stop.tip ? `<div class="eta-note">💡 ${stop.tip}</div>` : ''}
         </div>`;
-    });
-  }
+      });
+    }
 
-  // Initialize ETA on load
-  calcETA();
+    // Initialize ETA on load
+    calcETA();
 
   </script>
 
 </body>
+
 </html>
