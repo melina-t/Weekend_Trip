@@ -772,13 +772,13 @@
   <header>
     <div class="header-inner">
       <!-- EYEBROW TEXT — e.g. weekend dates -->
-      <p class="trip-eyebrow">🌲 Salt Lake City → Jackson Hole, Wyoming</p>
+      <p class="trip-eyebrow">🌲 Salt Lake City → National Parks</p>
 
       <!-- MAIN TRIP TITLE -->
       <h1 class="trip-title">Weekend Road Trip</h1>
 
       <!-- SUBTITLE / TAGLINE -->
-      <p class="trip-subtitle">Grand Tetons · Yellowstone · Wild Wyoming</p>
+      <p class="trip-subtitle">Grand Tetons · Yellowstone · Jackson Hole</p>
 
       <!-- ── WEATHER WIDGET ────────────────────────────────────
            Fetches live data from Open-Meteo (no API key needed).
@@ -809,214 +809,7 @@
     <div class="container">
 
       <!-- ════════════════════════════════════════════════════════
-           SECTION 2 — LODGING
-           Add as many .lodging-card divs as you have nights.
-           Replace placeholder text with your real booking details.
-           ════════════════════════════════════════════════════════ -->
-      <section id="lodging">
-        <div class="section-label">🏕️ Lodging</div>
-
-        <div class="lodging-grid">
-
-          <!-- ── LODGING CARD 1 ────────────────────────────────
-               Replace ALL the values below with your real info.
-               GOOGLE MAPS LINK: paste a "Copy link" URL from
-               Google Maps into the href="..." of the button.
-               ─────────────────────────────────────────────────── -->
-          <div class="card lodging-card">
-            <span class="lodging-badge">Night 1 — Friday</span>
-
-            <!-- LODGING NAME -->
-            <h3 id="lodge1-name">Anvil Hotel</h3>
-
-            <!-- ADDRESS -->
-            <div class="lodging-detail">
-              <span>Address</span>
-              <!-- ↓ CHANGE THIS ADDRESS ↓ -->
-              <span id="lodge1-addr">215 N Cache St, Jackson, WY 83001</span>
-            </div>
-
-            <!-- CHECK-IN TIME -->
-            <div class="lodging-detail">
-              <span>Check-in</span>
-              <!-- ↓ CHANGE THIS TIME ↓ -->
-              <span id="lodge1-checkin">Friday, July 11 · 3:00 PM</span>
-            </div>
-
-            <!-- CHECK-OUT TIME -->
-            <div class="lodging-detail">
-              <span>Check-out</span>
-              <!-- ↓ CHANGE THIS TIME ↓ -->
-              <span id="lodge1-checkout">Sunday, July 13 · 11:00 AM</span>
-            </div>
-
-            <!-- CONFIRMATION NUMBER (optional) -->
-            <div class="lodging-detail">
-              <span>Confirm #</span>
-              <!-- ↓ CHANGE OR REMOVE THIS ↓ -->
-              <span id="lodge1-conf">YOUR-CONFIRMATION-NUMBER</span>
-            </div>
-
-            <div class="lodging-actions">
-              <!-- ↓ PASTE YOUR GOOGLE MAPS LINK in href ↓ -->
-              <a class="btn" href="https://maps.google.com/?q=215+N+Cache+St,+Jackson,+WY+83001" target="_blank"
-                rel="noopener">
-                📍 Google Maps
-              </a>
-              <!-- ↓ OPTIONAL: link to booking confirmation ↓ -->
-              <a class="btn btn-earth" href="#" target="_blank" rel="noopener">
-                🔗 Booking
-              </a>
-            </div>
-          </div><!-- /lodging-card 1 -->
-
-          <!-- ── LODGING CARD 2 ────────────────────────────────
-               Duplicate this block to add more nights.
-               ─────────────────────────────────────────────────── -->
-          <div class="card lodging-card">
-            <span class="lodging-badge">Night 2 — Saturday</span>
-
-            <!-- LODGING NAME -->
-            <h3 id="lodge2-name">Teton Village Lodge</h3>
-
-            <div class="lodging-detail">
-              <span>Address</span>
-              <!-- ↓ CHANGE THIS ADDRESS ↓ -->
-              <span id="lodge2-addr">3335 WY-390, Teton Village, WY 83025</span>
-            </div>
-
-            <div class="lodging-detail">
-              <span>Check-in</span>
-              <!-- ↓ CHANGE THIS TIME ↓ -->
-              <span id="lodge2-checkin">Saturday, July 12 · 3:00 PM</span>
-            </div>
-
-            <div class="lodging-detail">
-              <span>Check-out</span>
-              <!-- ↓ CHANGE THIS TIME ↓ -->
-              <span id="lodge2-checkout">Sunday, July 13 · 11:00 AM</span>
-            </div>
-
-            <div class="lodging-detail">
-              <span>Confirm #</span>
-              <!-- ↓ CHANGE OR REMOVE THIS ↓ -->
-              <span id="lodge2-conf">YOUR-CONFIRMATION-NUMBER</span>
-            </div>
-
-            <div class="lodging-actions">
-              <!-- ↓ PASTE YOUR GOOGLE MAPS LINK in href ↓ -->
-              <a class="btn" href="https://maps.google.com/?q=3335+WY-390,+Teton+Village,+WY+83025" target="_blank"
-                rel="noopener">
-                📍 Google Maps
-              </a>
-              <a class="btn btn-earth" href="#" target="_blank" rel="noopener">
-                🔗 Booking
-              </a>
-            </div>
-          </div><!-- /lodging-card 2 -->
-
-        </div><!-- /lodging-grid -->
-      </section><!-- /lodging -->
-
-
-      <!-- ════════════════════════════════════════════════════════
-           SECTION 3 — PACKING CHECKLIST
-           To ADD an item: copy one <li> block and change the text.
-           To REMOVE an item: delete its <li> block.
-           Category headers use <p class="checklist-category">.
-           Checked state is saved in localStorage automatically.
-           ════════════════════════════════════════════════════════ -->
-      <section id="checklist">
-        <div class="section-label">🎒 Packing Checklist</div>
-
-        <div class="card">
-          <!-- Progress bar + counter (updated by JS) -->
-          <div class="checklist-status" id="checklist-status">0 of 0 packed</div>
-          <div class="checklist-progress-bar">
-            <div class="checklist-progress-fill" id="checklist-progress" style="width:0%"></div>
-          </div>
-
-          <!-- Controls -->
-          <div class="checklist-controls">
-            <button class="btn" onclick="checkAll()">✅ Check All</button>
-            <button class="btn btn-earth" onclick="clearAll()">↩ Clear All</button>
-          </div>
-
-          <!-- ── CATEGORY: SAFETY ──────────────────────────────
-               Edit item text directly inside each <label> tag.
-               ─────────────────────────────────────────────────── -->
-          <p class="checklist-category">🐻 Safety</p>
-          <ul class="checklist-list" id="checklist-items">
-            <li class="checklist-item" data-item="bear-spray" onclick="toggleItem(this)"><input type="checkbox" /> Bear
-              Spray</li>
-            <li class="checklist-item" data-item="first-aid" onclick="toggleItem(this)"><input type="checkbox" /> First
-              Aid Kit</li>
-            <li class="checklist-item" data-item="whistle" onclick="toggleItem(this)"><input type="checkbox" />
-              Emergency Whistle</li>
-            <li class="checklist-item" data-item="headlamp" onclick="toggleItem(this)"><input type="checkbox" />
-              Headlamp + Batteries</li>
-            <li class="checklist-item" data-item="sunscreen" onclick="toggleItem(this)"><input type="checkbox" />
-              Sunscreen SPF 50</li>
-            <li class="checklist-item" data-item="bug-spray" onclick="toggleItem(this)"><input type="checkbox" /> Bug
-              Spray</li>
-          </ul>
-
-          <!-- ── CATEGORY: CLOTHING ──────────────────────────── -->
-          <p class="checklist-category">👟 Clothing & Footwear</p>
-          <ul class="checklist-list">
-            <li class="checklist-item" data-item="hiking-boots" onclick="toggleItem(this)"><input type="checkbox" />
-              Hiking Boots</li>
-            <li class="checklist-item" data-item="rain-jacket" onclick="toggleItem(this)"><input type="checkbox" /> Rain
-              Jacket</li>
-            <li class="checklist-item" data-item="warm-layer" onclick="toggleItem(this)"><input type="checkbox" /> Warm
-              Fleece / Layer</li>
-            <li class="checklist-item" data-item="hiking-socks" onclick="toggleItem(this)"><input type="checkbox" />
-              Wool Hiking Socks (x3)</li>
-            <li class="checklist-item" data-item="hat" onclick="toggleItem(this)"><input type="checkbox" /> Sun Hat</li>
-            <li class="checklist-item" data-item="gloves" onclick="toggleItem(this)"><input type="checkbox" /> Light
-              Gloves</li>
-          </ul>
-
-          <!-- ── CATEGORY: GEAR ─────────────────────────────── -->
-          <p class="checklist-category">⛺ Gear</p>
-          <ul class="checklist-list">
-            <li class="checklist-item" data-item="daypack" onclick="toggleItem(this)"><input type="checkbox" /> Daypack
-            </li>
-            <li class="checklist-item" data-item="water-bottle" onclick="toggleItem(this)"><input type="checkbox" />
-              Water Bottle (32oz)</li>
-            <li class="checklist-item" data-item="trekking-poles" onclick="toggleItem(this)"><input type="checkbox" />
-              Trekking Poles</li>
-            <li class="checklist-item" data-item="binoculars" onclick="toggleItem(this)"><input type="checkbox" />
-              Binoculars</li>
-            <li class="checklist-item" data-item="camera" onclick="toggleItem(this)"><input type="checkbox" /> Camera +
-              Charger</li>
-            <li class="checklist-item" data-item="map" onclick="toggleItem(this)"><input type="checkbox" /> Park Map /
-              AllTrails</li>
-          </ul>
-
-          <!-- ── CATEGORY: FOOD & SUPPLIES ─────────────────── -->
-          <p class="checklist-category">🥾 Snacks & Supplies</p>
-          <ul class="checklist-list">
-            <li class="checklist-item" data-item="snacks" onclick="toggleItem(this)"><input type="checkbox" /> Trail Mix
-              / Snacks</li>
-            <li class="checklist-item" data-item="cooler" onclick="toggleItem(this)"><input type="checkbox" /> Cooler +
-              Ice</li>
-            <li class="checklist-item" data-item="cash" onclick="toggleItem(this)"><input type="checkbox" /> Cash (cell
-              service is spotty)</li>
-            <li class="checklist-item" data-item="nps-pass" onclick="toggleItem(this)"><input type="checkbox" />
-              National Parks Pass</li>
-            <li class="checklist-item" data-item="charger" onclick="toggleItem(this)"><input type="checkbox" /> Car
-              Charger / Power Bank</li>
-            <li class="checklist-item" data-item="downloaded-maps" onclick="toggleItem(this)"><input type="checkbox" />
-              Offline Maps Downloaded</li>
-          </ul>
-
-        </div><!-- /card -->
-      </section><!-- /checklist -->
-
-
-      <!-- ════════════════════════════════════════════════════════
-           SECTION 4 — ETA CALCULATOR
+           SECTION 1 — ETA CALCULATOR
            Drive times are defined in the JS below.
            To edit a destination name/time: find the etaStops array.
            ════════════════════════════════════════════════════════ -->
@@ -1032,15 +825,15 @@
             <div>
               <label for="depart-time">Departure Time (SLC)</label>
               <!-- Default is 8:00 AM — change the value attribute below -->
-              <input type="time" id="depart-time" value="08:00" oninput="calcETA()" />
+              <input type="time" id="depart-time" value="07:00" oninput="calcETA()" />
             </div>
             <div>
               <label for="depart-day">Travel Day</label>
               <select id="depart-day" onchange="calcETA()">
                 <!-- ↓ CHANGE THESE DATES to match your trip ↓ -->
-                <option value="0">Friday, July 11</option>
-                <option value="1">Saturday, July 12</option>
-                <option value="2">Sunday, July 13</option>
+                <option value="0">Saturday, May 30</option>
+                <option value="1">Sunday, May 31</option>
+                <option value="2">Monday, June 1</option>
               </select>
             </div>
           </div>
@@ -1051,9 +844,73 @@
         </div><!-- /card -->
       </section><!-- /eta -->
 
+      <!-- ════════════════════════════════════════════════════════
+           SECTION 2 — LODGING
+           Add as many .lodging-card divs as you have nights.
+           Replace placeholder text with your real booking details.
+           ════════════════════════════════════════════════════════ -->
+      <section id="lodging">
+        <div class="section-label">🏕️ Lodging</div>
+
+        <div class="lodging-grid">
+
+          <!-- ── LODGING CARD 1 ────────────────────────────────
+               Replace ALL the values below with your real info.
+               GOOGLE MAPS LINK: paste a "Copy link" URL from
+               Google Maps into the href="..." of the button.
+               ─────────────────────────────────────────────────── -->
+          <div class="card lodging-card">
+            <span class="lodging-badge">Arrival Saturday</span>
+
+            <!-- LODGING NAME -->
+            <h3 id="lodge1-name">Mountain Modern Jackson Hole</h3>
+
+            <!-- ADDRESS -->
+            <div class="lodging-detail">
+              <span>Address</span>
+              <!-- ↓ CHANGE THIS ADDRESS ↓ -->
+              <span id="lodge1-addr">380 W Broadway, Jackson, WY 83001</span>
+            </div>
+
+            <!-- CHECK-IN TIME -->
+            <div class="lodging-detail">
+              <span>Check-in</span>
+              <!-- ↓ CHANGE THIS TIME ↓ -->
+              <span id="lodge1-checkin">Saturday, May 30 · 4:00 PM</span>
+            </div>
+
+            <!-- CHECK-OUT TIME -->
+            <div class="lodging-detail">
+              <span>Check-out</span>
+              <!-- ↓ CHANGE THIS TIME ↓ -->
+              <span id="lodge1-checkout">Sunday, May 31 · 11:00 AM</span>
+            </div>
+
+            <!-- CONFIRMATION NUMBER (optional) -->
+            <!-- <div class="lodging-detail">
+              <span>Confirm #</span> -->
+            <!-- ↓ CHANGE OR REMOVE THIS ↓ -->
+            <!-- <span id="lodge1-conf">YOUR-CONFIRMATION-NUMBER</span>
+            </div> -->
+
+            <div class="lodging-actions">
+              <!-- ↓ PASTE YOUR GOOGLE MAPS LINK in href ↓ -->
+              <a class="btn" href="https://maps.app.goo.gl/fg5CYnsWFzxXPfLX6" target="_blank" rel="noopener">
+                📍 Google Maps
+              </a>
+
+              <!-- ↓ OPTIONAL: link to booking confirmation ↓ -->
+              <!-- <a class="btn btn-earth" href="#" target="_blank" rel="noopener">
+                🔗 Booking
+              </a>
+            </div>
+          </div>/lodging-card 1 -->
+
+            </div><!-- /lodging-grid -->
+      </section><!-- /lodging -->
 
       <!-- ════════════════════════════════════════════════════════
-           SECTION 5 — ITINERARY & DINING
+           SECTION 3 — ITINERARY & DINING
            Edit stop names, times, and descriptions freely.
            To add a stop: copy a <li> block inside .stop-list.
            To add a day: copy an .itinerary-day block.
@@ -1065,7 +922,7 @@
         <div class="itinerary-day card" style="margin-bottom:1.2rem;">
           <div class="day-header">
             <!-- ↓ CHANGE DAY LABEL & TITLE ↓ -->
-            <span class="day-pill">Day 1 · Fri Jul 11</span>
+            <span class="day-pill">Day 1 · Sat May 30</span>
             <span class="day-title">The Drive Up</span>
           </div>
 
@@ -1074,36 +931,84 @@
             <!-- ── STOP: SLC DEPARTURE ──
                  Edit time and description below. -->
             <li>
-              <div class="stop-time">8:00 AM</div>
-              <div class="stop-name">Depart Salt Lake City</div>
-              <div class="stop-desc">Fill up gas, grab coffee. Take I-15 N → US-189 N → US-26 E. About 4.5–5 hrs
-                depending on stops.</div>
+              <div class="stop-time">7:00 AM</div>
+              <div class="stop-name">Grand Teton</div>
+              <div class="stop-desc">4hr 45m to Vistor Center.</div>
             </li>
 
-            <!-- ── STOP: SNAKE RIVER CANYON ── -->
+            <!-- ── STOP: Craig Thomas Discovery and Visitor Center, 1 Teton Park Rd, Moose, WY 83012 ── -->
             <li>
-              <div class="stop-time">~11:30 AM</div>
-              <div class="stop-name">Snake River Canyon Overlook</div>
+              <div class="stop-time">~12:45 PM</div>
+              <div class="stop-name">Craig Thomas Discovery and Visitor Center</div>
               <!-- ↓ Edit description ↓ -->
-              <div class="stop-desc">Quick pull-off near Alpine, WY. Stunning canyon views — worth 20 minutes.</div>
-              <span class="stop-tip">📸 Photo op</span>
+              <div class="stop-desc">Optional.</div>
+              <!-- <span class="stop-tip">Optional</span> -->
             </li>
 
-            <!-- ── STOP: JACKSON ARRIVAL ── -->
+            <!-- ── STOP: Mormon Row ── -->
             <li>
-              <div class="stop-time">~1:00 PM</div>
-              <div class="stop-name">Arrive Jackson, WY</div>
-              <div class="stop-desc">Check into lodging, walk the town square with antler arches. Browse galleries on
-                Broadway.</div>
-              <span class="stop-tip">🦌 Elk antler arches at Town Square</span>
+              <!-- <div class="stop-time">~1:00 PM</div> -->
+              <div class="stop-name">Mormon Row</div>
+              <div class="stop-desc">Views.</div>
+              <!-- <span class="stop-tip">🦌 Elk antler arches at Town Square</span> -->
             </li>
 
-            <!-- ── STOP: DINNER ── -->
+            <!-- ── STOPS: DINNER ── -->
             <li>
               <div class="stop-time">7:00 PM</div>
               <div class="stop-name">Dinner in Jackson</div>
               <div class="stop-desc">See dining recommendations below.</div>
             </li>
+            <li>
+              <div class="stop-time">7:00 PM</div>
+              <div class="stop-name">Dinner in Jackson</div>
+              <div class="stop-desc">See dining recommendations below.</div>
+            </li>
+            <li>
+              <div class="stop-time">7:00 PM</div>
+              <div class="stop-name">Dinner in Jackson</div>
+              <div class="stop-desc">See dining recommendations below.</div>
+            </li>
+            <li>
+              <div class="stop-time">7:00 PM</div>
+              <div class="stop-name">Dinner in Jackson</div>
+              <div class="stop-desc">See dining recommendations below.</div>
+              <!-- </li>
+            <li>
+              <div class="stop-time">7:00 PM</div>
+              <div class="stop-name">Dinner in Jackson</div>
+              <div class="stop-desc">See dining recommendations below.</div>
+            </li>
+            <li>
+              <div class="stop-time">7:00 PM</div>
+              <div class="stop-name">Dinner in Jackson</div>
+              <div class="stop-desc">See dining recommendations below.</div>
+            </li>
+            <li>
+              <div class="stop-time">7:00 PM</div>
+              <div class="stop-name">Dinner in Jackson</div>
+              <div class="stop-desc">See dining recommendations below.</div>
+            </li>
+            <li>
+              <div class="stop-time">7:00 PM</div>
+              <div class="stop-name">Dinner in Jackson</div>
+              <div class="stop-desc">See dining recommendations below.</div>
+            </li>
+            <li>
+              <div class="stop-time">7:00 PM</div>
+              <div class="stop-name">Dinner in Jackson</div>
+              <div class="stop-desc">See dining recommendations below.</div>
+            </li>
+            <li>
+              <div class="stop-time">7:00 PM</div>
+              <div class="stop-name">Dinner in Jackson</div>
+              <div class="stop-desc">See dining recommendations below.</div>
+            </li>
+            <li>
+              <div class="stop-time">7:00 PM</div>
+              <div class="stop-name">Dinner in Jackson</div>
+              <div class="stop-desc">See dining recommendations below.</div>
+            </li> -->
 
           </ul>
         </div><!-- /day 1 -->
@@ -1161,168 +1066,219 @@
           </ul>
         </div><!-- /day 2 -->
 
-        <!-- ── DAY 3 ──────────────────────────────────────────── -->
-        <div class="itinerary-day card">
-          <div class="day-header">
-            <!-- ↓ CHANGE DAY LABEL & TITLE ↓ -->
-            <span class="day-pill">Day 3 · Sun Jul 13</span>
-            <span class="day-title">Yellowstone &amp; Drive Home</span>
-          </div>
+        <!-- ════════════════════════════════════════════════════════
+           SECTION 3 — PACKING CHECKLIST
+           To ADD an item: copy one <li> block and change the text.
+           To REMOVE an item: delete its <li> block.
+           Category headers use <p class="checklist-category">.
+           Checked state is saved in localStorage automatically.
+           ════════════════════════════════════════════════════════ -->
+        <section id="checklist">
+          <div class="section-label">🎒 Packing Checklist</div>
 
-          <ul class="stop-list">
+          <div class="card">
+            <!-- Progress bar + counter (updated by JS) -->
+            <div class="checklist-status" id="checklist-status">0 of 0 packed</div>
+            <div class="checklist-progress-bar">
+              <div class="checklist-progress-fill" id="checklist-progress" style="width:0%"></div>
+            </div>
 
-            <li>
-              <div class="stop-time">7:00 AM</div>
-              <div class="stop-name">Check Out &amp; Head North</div>
-              <div class="stop-desc">Check out by 11 AM but leave bags at hotel. Drive north through Grand Teton to
-                Yellowstone South Entrance (about 1 hr 15 min from Jackson).</div>
-            </li>
+            <!-- Controls -->
+            <div class="checklist-controls">
+              <button class="btn" onclick="checkAll()">✅ Check All</button>
+              <button class="btn btn-earth" onclick="clearAll()">↩ Clear All</button>
+            </div>
 
-            <li>
-              <div class="stop-time">8:30 AM</div>
-              <div class="stop-name">Yellowstone South Entrance</div>
-              <div class="stop-desc">Show your National Parks Pass. Head straight to the Geyser Basin loop before crowds
-                arrive.</div>
-              <span class="stop-tip">🎫 NPS Pass covers both parks</span>
-            </li>
+            <!-- ── CATEGORY: SAFETY ──────────────────────────────
+               Edit item text directly inside each <label> tag.
+               ─────────────────────────────────────────────────── -->
+            <p class="checklist-category">🐻 Safety</p>
+            <ul class="checklist-list" id="checklist-items">
+              <li class="checklist-item" data-item="bear-spray" onclick="toggleItem(this)"><input type="checkbox" />
+                Bear
+                Spray</li>
+              <li class="checklist-item" data-item="first-aid" onclick="toggleItem(this)"><input type="checkbox" />
+                First
+                Aid Kit</li>
+              <li class="checklist-item" data-item="whistle" onclick="toggleItem(this)"><input type="checkbox" />
+                Emergency Whistle</li>
+              <li class="checklist-item" data-item="headlamp" onclick="toggleItem(this)"><input type="checkbox" />
+                Headlamp + Batteries</li>
+              <li class="checklist-item" data-item="sunscreen" onclick="toggleItem(this)"><input type="checkbox" />
+                Sunscreen SPF 50</li>
+              <li class="checklist-item" data-item="bug-spray" onclick="toggleItem(this)"><input type="checkbox" /> Bug
+                Spray</li>
+            </ul>
 
-            <li>
-              <div class="stop-time">9:30 AM</div>
-              <div class="stop-name">Old Faithful Geyser</div>
-              <!-- ↓ Edit description ↓ -->
-              <div class="stop-desc">Check the eruption prediction board (usually within ±10 min). Erupts roughly every
-                90 minutes. Walk the Upper Geyser Basin boardwalk loop (~1.5 miles) for additional geysers.</div>
-              <span class="stop-tip">⏱ Eruption predictions posted at the Visitor Center</span>
-            </li>
+            <!-- ── CATEGORY: CLOTHING ──────────────────────────── -->
+            <p class="checklist-category">👟 Clothing & Footwear</p>
+            <ul class="checklist-list">
+              <li class="checklist-item" data-item="hiking-boots" onclick="toggleItem(this)"><input type="checkbox" />
+                Hiking Boots</li>
+              <li class="checklist-item" data-item="rain-jacket" onclick="toggleItem(this)"><input type="checkbox" />
+                Rain
+                Jacket</li>
+              <li class="checklist-item" data-item="warm-layer" onclick="toggleItem(this)"><input type="checkbox" />
+                Warm
+                Fleece / Layer</li>
+              <li class="checklist-item" data-item="hiking-socks" onclick="toggleItem(this)"><input type="checkbox" />
+                Wool Hiking Socks (x3)</li>
+              <li class="checklist-item" data-item="hat" onclick="toggleItem(this)"><input type="checkbox" /> Sun Hat
+              </li>
+              <li class="checklist-item" data-item="gloves" onclick="toggleItem(this)"><input type="checkbox" /> Light
+                Gloves</li>
+            </ul>
 
-            <li>
-              <div class="stop-time">11:30 AM</div>
-              <div class="stop-name">Grand Prismatic Spring (Midway Geyser Basin)</div>
-              <div class="stop-desc">The largest hot spring in the US. Drive ~5 min north. Take the overlook trail for
-                the iconic aerial view of rainbow colors. Boardwalk at base level is also worth walking.</div>
-              <span class="stop-tip">🌈 Overlook trail: ~1 mile RT, great photos</span>
-            </li>
+            <!-- ── CATEGORY: GEAR ─────────────────────────────── -->
+            <p class="checklist-category">⛺ Gear</p>
+            <ul class="checklist-list">
+              <li class="checklist-item" data-item="daypack" onclick="toggleItem(this)"><input type="checkbox" />
+                Daypack
+              </li>
+              <li class="checklist-item" data-item="water-bottle" onclick="toggleItem(this)"><input type="checkbox" />
+                Water Bottle (32oz)</li>
+              <li class="checklist-item" data-item="trekking-poles" onclick="toggleItem(this)"><input type="checkbox" />
+                Trekking Poles</li>
+              <li class="checklist-item" data-item="binoculars" onclick="toggleItem(this)"><input type="checkbox" />
+                Binoculars</li>
+              <li class="checklist-item" data-item="camera" onclick="toggleItem(this)"><input type="checkbox" /> Camera
+                +
+                Charger</li>
+              <li class="checklist-item" data-item="map" onclick="toggleItem(this)"><input type="checkbox" /> Park Map /
+                AllTrails</li>
+            </ul>
 
-            <li>
-              <div class="stop-time">1:30 PM</div>
-              <div class="stop-name">Head Back South</div>
-              <div class="stop-desc">Drive back through the Tetons to Jackson, pick up bags, and start the 5-hour drive
-                back to SLC. Total drive home: ~5 hrs.</div>
-            </li>
+            <!-- ── CATEGORY: FOOD & SUPPLIES ─────────────────── -->
+            <p class="checklist-category">🥾 Snacks & Supplies</p>
+            <ul class="checklist-list">
+              <li class="checklist-item" data-item="snacks" onclick="toggleItem(this)"><input type="checkbox" /> Trail
+                Mix
+                / Snacks</li>
+              <li class="checklist-item" data-item="cooler" onclick="toggleItem(this)"><input type="checkbox" /> Cooler
+                +
+                Ice</li>
+              <li class="checklist-item" data-item="cash" onclick="toggleItem(this)"><input type="checkbox" /> Cash
+                (cell
+                service is spotty)</li>
+              <li class="checklist-item" data-item="nps-pass" onclick="toggleItem(this)"><input type="checkbox" />
+                National Parks Pass</li>
+              <li class="checklist-item" data-item="charger" onclick="toggleItem(this)"><input type="checkbox" /> Car
+                Charger / Power Bank</li>
+              <li class="checklist-item" data-item="downloaded-maps" onclick="toggleItem(this)"><input
+                  type="checkbox" />
+                Offline Maps Downloaded</li>
+            </ul>
 
-            <li>
-              <div class="stop-time">~7:00 PM</div>
-              <div class="stop-name">Arrive Salt Lake City 🏠</div>
-              <div class="stop-desc">Estimated arrival back in SLC.</div>
-            </li>
-
-          </ul>
-        </div><!-- /day 3 -->
-
-      </section><!-- /itinerary -->
+          </div><!-- /card -->
+        </section><!-- /checklist -->
 
 
-      <!-- ════════════════════════════════════════════════════════
+
+        <!-- ════════════════════════════════════════════════════════
            DINING RECOMMENDATIONS
            Add/remove/edit dining cards freely.
            GOOGLE MAPS LINK: paste your link in href="..."
            ════════════════════════════════════════════════════════ -->
-      <section id="dining">
-        <div class="section-label">🍽️ Dining in Jackson</div>
+        <section id="dining">
+          <div class="section-label">🍽️ Dining in Jackson</div>
 
-        <div class="card">
-          <div class="dining-grid">
+          <div class="card">
+            <div class="dining-grid">
 
-            <!-- ── RESTAURANT 1 ──────────────────────────────────
+              <!-- ── RESTAURANT 1 ──────────────────────────────────
                  CHANGE: name, tag, description, Google Maps link
                  ─────────────────────────────────────────────────── -->
-            <div class="dining-card">
-              <h4>The Bunnery</h4>
-              <span class="dining-tag">☀️ Breakfast / Brunch</span>
-              <!-- ↓ Edit description ↓ -->
-              <p>Local institution since 1979. Famous for OSM (oats, sunflower, millet) bread. Expect a wait on weekends
-                — arrive early or check in for takeout.</p>
-              <!-- ↓ PASTE GOOGLE MAPS LINK ↓ -->
-              <a class="btn" href="https://maps.google.com/?q=The+Bunnery+Jackson+WY" target="_blank" rel="noopener">📍
-                Maps</a>
-            </div>
+              <div class="dining-card">
+                <h4>The Bunnery</h4>
+                <span class="dining-tag">☀️ Breakfast / Brunch</span>
+                <!-- ↓ Edit description ↓ -->
+                <p>Local institution since 1979. Famous for OSM (oats, sunflower, millet) bread. Expect a wait on
+                  weekends
+                  — arrive early or check in for takeout.</p>
+                <!-- ↓ PASTE GOOGLE MAPS LINK ↓ -->
+                <a class="btn" href="https://maps.google.com/?q=The+Bunnery+Jackson+WY" target="_blank"
+                  rel="noopener">📍
+                  Maps</a>
+              </div>
 
-            <!-- ── RESTAURANT 2 ── -->
-            <div class="dining-card">
-              <h4>Liberty Burger</h4>
-              <span class="dining-tag">🍔 Casual / Lunch</span>
-              <!-- ↓ Edit description ↓ -->
-              <p>Wyoming beef burgers with local elk and bison options. Great for a quick post-hike lunch. Locally
-                sourced, no fuss.</p>
-              <a class="btn" href="https://maps.google.com/?q=Liberty+Burger+Jackson+WY" target="_blank"
-                rel="noopener">📍 Maps</a>
-            </div>
+              <!-- ── RESTAURANT 2 ── -->
+              <div class="dining-card">
+                <h4>Liberty Burger</h4>
+                <span class="dining-tag">🍔 Casual / Lunch</span>
+                <!-- ↓ Edit description ↓ -->
+                <p>Wyoming beef burgers with local elk and bison options. Great for a quick post-hike lunch. Locally
+                  sourced, no fuss.</p>
+                <a class="btn" href="https://maps.google.com/?q=Liberty+Burger+Jackson+WY" target="_blank"
+                  rel="noopener">📍 Maps</a>
+              </div>
 
-            <!-- ── RESTAURANT 3 ── -->
-            <div class="dining-card">
-              <h4>Persephone Bakery</h4>
-              <span class="dining-tag">☕ Coffee / Pastries</span>
-              <!-- ↓ Edit description ↓ -->
-              <p>Artisan bakery with outstanding espresso and croissants. Perfect for grabbing breakfast before an early
-                park start. Beautiful outdoor seating.</p>
-              <a class="btn" href="https://maps.google.com/?q=Persephone+Bakery+Jackson+WY" target="_blank"
-                rel="noopener">📍 Maps</a>
-            </div>
+              <!-- ── RESTAURANT 3 ── -->
+              <div class="dining-card">
+                <h4>Persephone Bakery</h4>
+                <span class="dining-tag">☕ Coffee / Pastries</span>
+                <!-- ↓ Edit description ↓ -->
+                <p>Artisan bakery with outstanding espresso and croissants. Perfect for grabbing breakfast before an
+                  early
+                  park start. Beautiful outdoor seating.</p>
+                <a class="btn" href="https://maps.google.com/?q=Persephone+Bakery+Jackson+WY" target="_blank"
+                  rel="noopener">📍 Maps</a>
+              </div>
 
-            <!-- ── RESTAURANT 4 ── -->
-            <div class="dining-card">
-              <h4>Snake River Grill</h4>
-              <span class="dining-tag">🥩 Upscale / Dinner</span>
-              <!-- ↓ Edit description ↓ -->
-              <p>Local favorite for special dinners. Wyoming game, fresh fish, and a stellar wine list in a warm,
-                log-cabin atmosphere on Town Square. Reserve ahead.</p>
-              <a class="btn" href="https://maps.google.com/?q=Snake+River+Grill+Jackson+WY" target="_blank"
-                rel="noopener">📍 Maps</a>
-            </div>
+              <!-- ── RESTAURANT 4 ── -->
+              <div class="dining-card">
+                <h4>Snake River Grill</h4>
+                <span class="dining-tag">🥩 Upscale / Dinner</span>
+                <!-- ↓ Edit description ↓ -->
+                <p>Local favorite for special dinners. Wyoming game, fresh fish, and a stellar wine list in a warm,
+                  log-cabin atmosphere on Town Square. Reserve ahead.</p>
+                <a class="btn" href="https://maps.google.com/?q=Snake+River+Grill+Jackson+WY" target="_blank"
+                  rel="noopener">📍 Maps</a>
+              </div>
 
-            <!-- ── RESTAURANT 5 ── -->
-            <div class="dining-card">
-              <h4>Anvil Bar &amp; Refuge</h4>
-              <span class="dining-tag">🍺 Drinks / Late Night</span>
-              <!-- ↓ Edit description ↓ -->
-              <p>Craft cocktails, cold beer, and a laid-back vibe. Connected to the Anvil Hotel. Great après-hike spot
-                with a solid bar snack menu.</p>
-              <a class="btn" href="https://maps.google.com/?q=Anvil+Bar+and+Refuge+Jackson+WY" target="_blank"
-                rel="noopener">📍 Maps</a>
-            </div>
+              <!-- ── RESTAURANT 5 ── -->
+              <div class="dining-card">
+                <h4>Anvil Bar &amp; Refuge</h4>
+                <span class="dining-tag">🍺 Drinks / Late Night</span>
+                <!-- ↓ Edit description ↓ -->
+                <p>Craft cocktails, cold beer, and a laid-back vibe. Connected to the Anvil Hotel. Great après-hike spot
+                  with a solid bar snack menu.</p>
+                <a class="btn" href="https://maps.google.com/?q=Anvil+Bar+and+Refuge+Jackson+WY" target="_blank"
+                  rel="noopener">📍 Maps</a>
+              </div>
 
-            <!-- ── RESTAURANT 6 — blank placeholder ──
+              <!-- ── RESTAURANT 6 — blank placeholder ──
                  Duplicate this block and fill in your own pick.
                  ─────────────────────────────────────────────────── -->
-            <div class="dining-card">
-              <h4>Your Pick Here</h4>
-              <span class="dining-tag">🍽️ Category</span>
-              <p>Edit this card and add your own restaurant recommendation. Change the name, tag, description, and
-                Google Maps link above.</p>
-              <a class="btn" href="#" target="_blank" rel="noopener">📍 Maps</a>
-            </div>
+              <div class="dining-card">
+                <h4>Your Pick Here</h4>
+                <span class="dining-tag">🍽️ Category</span>
+                <p>Edit this card and add your own restaurant recommendation. Change the name, tag, description, and
+                  Google Maps link above.</p>
+                <a class="btn" href="#" target="_blank" rel="noopener">📍 Maps</a>
+              </div>
 
-          </div><!-- /dining-grid -->
-        </div><!-- /card -->
-      </section><!-- /dining -->
+            </div><!-- /dining-grid -->
+          </div><!-- /card -->
+        </section><!-- /dining -->
 
 
-      <!-- ── QUICK LINKS ──────────────────────────────────────── -->
-      <section id="links">
-        <div class="section-label">🔗 Quick Links</div>
-        <div class="card" style="display:flex;flex-wrap:wrap;gap:.7rem;">
-          <!-- ↓ Add / change any links here ↓ -->
-          <a class="btn" href="https://www.nps.gov/grte/planyourvisit/index.htm" target="_blank" rel="noopener">Grand
-            Teton NPS</a>
-          <a class="btn" href="https://www.nps.gov/yell/planyourvisit/index.htm" target="_blank"
-            rel="noopener">Yellowstone NPS</a>
-          <a class="btn" href="https://www.nps.gov/oldfaithful/faithfulprediction.htm" target="_blank"
-            rel="noopener">Old Faithful Predictions</a>
-          <a class="btn btn-earth" href="https://www.recreation.gov/" target="_blank" rel="noopener">Recreation.gov</a>
-          <a class="btn btn-earth" href="https://www.alltrails.com/parks/us/wyoming/grand-teton-national-park"
-            target="_blank" rel="noopener">AllTrails — Grand Teton</a>
-        </div>
-      </section>
+        <!-- ── QUICK LINKS ──────────────────────────────────────── -->
+        <section id="links">
+          <div class="section-label">🔗 Quick Links</div>
+          <div class="card" style="display:flex;flex-wrap:wrap;gap:.7rem;">
+            <!-- ↓ Add / change any links here ↓ -->
+            <a class="btn" href="https://www.nps.gov/grte/planyourvisit/index.htm" target="_blank" rel="noopener">Grand
+              Teton NPS</a>
+            <a class="btn" href="https://www.nps.gov/yell/planyourvisit/index.htm" target="_blank"
+              rel="noopener">Yellowstone NPS</a>
+            <a class="btn" href="https://www.nps.gov/oldfaithful/faithfulprediction.htm" target="_blank"
+              rel="noopener">Old Faithful Predictions</a>
+            <a class="btn btn-earth" href="https://www.recreation.gov/" target="_blank"
+              rel="noopener">Recreation.gov</a>
+            <a class="btn btn-earth" href="https://www.alltrails.com/parks/us/wyoming/grand-teton-national-park"
+              target="_blank" rel="noopener">AllTrails — Grand Teton</a>
+          </div>
+        </section>
 
     </div><!-- /container -->
   </main>
