@@ -785,7 +785,7 @@
            Coordinates below are set to Jackson, WY.
            To change location: update LAT/LON in the JS below.
            ────────────────────────────────────────────────────── -->
-      <div class="weather-strip" id="weather-widget">
+      <!-- <div class="weather-strip" id="weather-widget">
         <div>
           <div class="weather-location">Jackson, WY</div>
           <div class="weather-now">
@@ -800,7 +800,60 @@
         <span id="weather-error" style="display:none"></span>
       </div>
     </div>
+  </header> -->
+
+      <div
+        style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 16px; padding: 24px; margin: 20px 0; color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);">
+
+        <div
+          style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.15); padding-bottom: 14px; margin-bottom: 20px;">
+          <div>
+            <h2
+              style="font-size: 1.1rem; font-weight: 700; margin: 0; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px;">
+              🌤️ LIVE REGIONAL WEATHER (NOAA)
+            </h2>
+          </div>
+          <button id="unitToggle" onclick="toggleUnits()"
+            style="background: #ffffff; color: #2d4a22; border: none; padding: 6px 14px; border-radius: 20px; font-weight: bold; font-size: 0.75rem; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
+            Switch to °C
+          </button>
+        </div>
+
+        <div style="margin-bottom: 24px; background: rgba(0, 0, 0, 0.1); padding: 16px; border-radius: 12px;">
+          <h3
+            style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.9; margin-bottom: 12px; color: #fdfdfd; font-weight: bold; border-left: 3px solid #ffffff; padding-left: 8px;">
+            Jackson, WY</h3>
+          <div id="forecast-jackson"
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; text-align: center;">
+            <div style="font-size: 0.85rem; opacity: 0.7; padding: 10px;">Loading multi-day forecast...</div>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 24px; background: rgba(0, 0, 0, 0.1); padding: 16px; border-radius: 12px;">
+          <h3
+            style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.9; margin-bottom: 12px; color: #fdfdfd; font-weight: bold; border-left: 3px solid #ffffff; padding-left: 8px;">
+            Grand Teton National Park</h3>
+          <div id="forecast-teton"
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; text-align: center;">
+            <div style="font-size: 0.85rem; opacity: 0.7; padding: 10px;">Loading multi-day forecast...</div>
+          </div>
+        </div>
+
+        <div style="background: rgba(0, 0, 0, 0.1); padding: 16px; border-radius: 12px;">
+          <h3
+            style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.9; margin-bottom: 12px; color: #fdfdfd; font-weight: bold; border-left: 3px solid #ffffff; padding-left: 8px;">
+            Yellowstone (South Entrance)</h3>
+          <div id="forecast-yellowstone"
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; text-align: center;">
+            <div style="font-size: 0.85rem; opacity: 0.7; padding: 10px;">Loading multi-day forecast...</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
   </header>
+
 
   <!-- ============================================================
        MAIN CONTENT
@@ -1027,15 +1080,18 @@
               <div class="stop-time">7:00 AM</div>
               <div class="stop-name">Early Start — Jenny Lake</div>
               <!-- ↓ Edit description ↓ -->
-              <div class="stop-desc">Drive to Jenny Lake (30 min from Jackson). Take the ferry across ($20 RT) to cut 2
-                miles off the Hidden Falls / Inspiration Point hike. Arrive early to beat crowds and find parking.</div>
+              <div class="stop-desc">Drive to Jenny Lake (30 min from Jackson). Take the ferry across ($20 RT) to
+                cut 2
+                miles off the Hidden Falls / Inspiration Point hike. Arrive early to beat crowds and find parking.
+              </div>
               <span class="stop-tip">⛴ Ferry runs 7 AM–7 PM · Cash or card</span>
             </li>
 
             <li>
               <div class="stop-time">9:00 AM</div>
               <div class="stop-name">Inspiration Point Hike</div>
-              <div class="stop-desc">~4.5 miles round trip with ferry. Moderate difficulty. Stunning views of Jenny Lake
+              <div class="stop-desc">~4.5 miles round trip with ferry. Moderate difficulty. Stunning views of Jenny
+                Lake
                 and the Tetons. Allow 3–4 hours.</div>
               <span class="stop-tip">🥾 Bring bear spray & plenty of water</span>
             </li>
@@ -1043,7 +1099,8 @@
             <li>
               <div class="stop-time">1:00 PM</div>
               <div class="stop-name">Signal Mountain Summit Road</div>
-              <div class="stop-desc">Drive the 5-mile summit road for a panoramic view of the entire valley and Jackson
+              <div class="stop-desc">Drive the 5-mile summit road for a panoramic view of the entire valley and
+                Jackson
                 Lake. No hiking required.</div>
             </li>
 
@@ -1058,7 +1115,8 @@
             <li>
               <div class="stop-time">7:00 PM</div>
               <div class="stop-name">Dinner + Sunset</div>
-              <div class="stop-desc">Return to Jackson for dinner. Catch sunset at Schwabacher Landing for iconic Teton
+              <div class="stop-desc">Return to Jackson for dinner. Catch sunset at Schwabacher Landing for iconic
+                Teton
                 reflections if sky is clear.</div>
               <span class="stop-tip">🌅 Schwabacher Landing: 4 miles S of Moose Junction</span>
             </li>
@@ -1106,7 +1164,8 @@
                 Headlamp + Batteries</li>
               <li class="checklist-item" data-item="sunscreen" onclick="toggleItem(this)"><input type="checkbox" />
                 Sunscreen SPF 50</li>
-              <li class="checklist-item" data-item="bug-spray" onclick="toggleItem(this)"><input type="checkbox" /> Bug
+              <li class="checklist-item" data-item="bug-spray" onclick="toggleItem(this)"><input type="checkbox" />
+                Bug
                 Spray</li>
             </ul>
 
@@ -1123,9 +1182,11 @@
                 Fleece / Layer</li>
               <li class="checklist-item" data-item="hiking-socks" onclick="toggleItem(this)"><input type="checkbox" />
                 Wool Hiking Socks (x3)</li>
-              <li class="checklist-item" data-item="hat" onclick="toggleItem(this)"><input type="checkbox" /> Sun Hat
+              <li class="checklist-item" data-item="hat" onclick="toggleItem(this)"><input type="checkbox" /> Sun
+                Hat
               </li>
-              <li class="checklist-item" data-item="gloves" onclick="toggleItem(this)"><input type="checkbox" /> Light
+              <li class="checklist-item" data-item="gloves" onclick="toggleItem(this)"><input type="checkbox" />
+                Light
                 Gloves</li>
             </ul>
 
@@ -1141,20 +1202,24 @@
                 Trekking Poles</li>
               <li class="checklist-item" data-item="binoculars" onclick="toggleItem(this)"><input type="checkbox" />
                 Binoculars</li>
-              <li class="checklist-item" data-item="camera" onclick="toggleItem(this)"><input type="checkbox" /> Camera
+              <li class="checklist-item" data-item="camera" onclick="toggleItem(this)"><input type="checkbox" />
+                Camera
                 +
                 Charger</li>
-              <li class="checklist-item" data-item="map" onclick="toggleItem(this)"><input type="checkbox" /> Park Map /
+              <li class="checklist-item" data-item="map" onclick="toggleItem(this)"><input type="checkbox" /> Park
+                Map /
                 AllTrails</li>
             </ul>
 
             <!-- ── CATEGORY: FOOD & SUPPLIES ─────────────────── -->
             <p class="checklist-category">🥾 Snacks & Supplies</p>
             <ul class="checklist-list">
-              <li class="checklist-item" data-item="snacks" onclick="toggleItem(this)"><input type="checkbox" /> Trail
+              <li class="checklist-item" data-item="snacks" onclick="toggleItem(this)"><input type="checkbox" />
+                Trail
                 Mix
                 / Snacks</li>
-              <li class="checklist-item" data-item="cooler" onclick="toggleItem(this)"><input type="checkbox" /> Cooler
+              <li class="checklist-item" data-item="cooler" onclick="toggleItem(this)"><input type="checkbox" />
+                Cooler
                 +
                 Ice</li>
               <li class="checklist-item" data-item="cash" onclick="toggleItem(this)"><input type="checkbox" /> Cash
@@ -1162,7 +1227,8 @@
                 service is spotty)</li>
               <li class="checklist-item" data-item="nps-pass" onclick="toggleItem(this)"><input type="checkbox" />
                 National Parks Pass</li>
-              <li class="checklist-item" data-item="charger" onclick="toggleItem(this)"><input type="checkbox" /> Car
+              <li class="checklist-item" data-item="charger" onclick="toggleItem(this)"><input type="checkbox" />
+                Car
                 Charger / Power Bank</li>
               <li class="checklist-item" data-item="downloaded-maps" onclick="toggleItem(this)"><input
                   type="checkbox" />
@@ -1240,7 +1306,8 @@
                 <h4>Anvil Bar &amp; Refuge</h4>
                 <span class="dining-tag">🍺 Drinks / Late Night</span>
                 <!-- ↓ Edit description ↓ -->
-                <p>Craft cocktails, cold beer, and a laid-back vibe. Connected to the Anvil Hotel. Great après-hike spot
+                <p>Craft cocktails, cold beer, and a laid-back vibe. Connected to the Anvil Hotel. Great après-hike
+                  spot
                   with a solid bar snack menu.</p>
                 <a class="btn" href="https://maps.google.com/?q=Anvil+Bar+and+Refuge+Jackson+WY" target="_blank"
                   rel="noopener">📍 Maps</a>
@@ -1313,230 +1380,262 @@
        ══════════════════════════════════════════════════════════════ */
 
     // ↓ JACKSON, WY coordinates — change if you want a different city
-    const WEATHER_LAT = 43.4799;
-    const WEATHER_LON = -110.7624;
+    // const WEATHER_LAT = 43.4799;
+    // const WEATHER_LON = -110.7624;
 
     // WMO weather code → human-readable description + emoji
-    // Reference: https://open-meteo.com/en/docs#weathervariables
-    const WMO_CODES = {
-      0: ['Clear sky', '☀️'],
-      1: ['Mainly clear', '🌤️'], 2: ['Partly cloudy', '⛅'], 3: ['Overcast', '☁️'],
-      45: ['Fog', '🌫️'], 48: ['Icy fog', '🌫️'],
-      51: ['Light drizzle', '🌦️'], 53: ['Drizzle', '🌦️'], 55: ['Heavy drizzle', '🌧️'],
-      61: ['Light rain', '🌧️'], 63: ['Rain', '🌧️'], 65: ['Heavy rain', '🌧️'],
-      71: ['Light snow', '❄️'], 73: ['Snow', '❄️'], 75: ['Heavy snow', '❄️'],
-      77: ['Snow grains', '🌨️'],
-      80: ['Rain showers', '🌦️'], 81: ['Heavy showers', '🌧️'], 82: ['Violent showers', '⛈️'],
-      85: ['Snow showers', '🌨️'], 86: ['Heavy snow showers', '🌨️'],
-      95: ['Thunderstorm', '⛈️'], 96: ['Thunderstorm + hail', '⛈️'], 99: ['Thunderstorm + hail', '⛈️'],
+    // // Reference: https://open-meteo.com/en/docs#weathervariables
+    // const WMO_CODES = {
+    //   0: ['Clear sky', '☀️'],
+    //   1: ['Mainly clear', '🌤️'], 2: ['Partly cloudy', '⛅'], 3: ['Overcast', '☁️'],
+    //   45: ['Fog', '🌫️'], 48: ['Icy fog', '🌫️'],
+    //   51: ['Light drizzle', '🌦️'], 53: ['Drizzle', '🌦️'], 55: ['Heavy drizzle', '🌧️'],
+    //   61: ['Light rain', '🌧️'], 63: ['Rain', '🌧️'], 65: ['Heavy rain', '🌧️'],
+    //   71: ['Light snow', '❄️'], 73: ['Snow', '❄️'], 75: ['Heavy snow', '❄️'],
+    //   77: ['Snow grains', '🌨️'],
+    //   80: ['Rain showers', '🌦️'], 81: ['Heavy showers', '🌧️'], 82: ['Violent showers', '⛈️'],
+    //   85: ['Snow showers', '🌨️'], 86: ['Heavy snow showers', '🌨️'],
+    //   95: ['Thunderstorm', '⛈️'], 96: ['Thunderstorm + hail', '⛈️'], 99: ['Thunderstorm + hail', '⛈️'],
+    // };
+
+    // function wmoLabel(code) {
+    //   return WMO_CODES[code] || ['Unknown', '🌡️'];
+    // }
+
+    // async function loadWeather() {
+    //   try {
+    //     const url = `https://api.open-meteo.com/v1/forecast?`
+    //       + `latitude=${WEATHER_LAT}&longitude=${WEATHER_LON}`
+    //       + `&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code`
+    //       + `&daily=weather_code,temperature_2m_max,temperature_2m_min`
+    //       + `&temperature_unit=fahrenheit`
+    //       + `&wind_speed_unit=mph`
+    //       + `&timezone=America/Denver`
+    //       + `&forecast_days=4`;
+
+    //     const res = await fetch(url);
+    //     const data = await res.json();
+
+
+    // Global weather tracking state
+    let currentUnit = 'F';
+    let rawForecastData = { jackson: [], teton: [], yellowstone: [] };
+
+    const weatherStations = {
+      jackson: 'https://api.weather.gov/gridpoints/RIW/36,36/forecast',
+      teton: 'https://api.weather.gov/gridpoints/RIW/35,46/forecast',
+      yellowstone: 'https://api.weather.gov/gridpoints/RIW/26,71/forecast'
     };
 
-    function wmoLabel(code) {
-      return WMO_CODES[code] || ['Unknown', '🌡️'];
-    }
+    async function fetchWeather() {
+      for (const [key, url] of Object.entries(weatherStations)) {
+        try {
+          const response = await fetch(url, { headers: { 'User-Agent': 'WyomingTripPlanner/1.0' } });
+          if (!response.ok) throw new Error('API line dropped');
+          const data = await response.json();
 
-    async function loadWeather() {
-      try {
-        const url = `https://api.open-meteo.com/v1/forecast?`
-          + `latitude=${WEATHER_LAT}&longitude=${WEATHER_LON}`
-          + `&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code`
-          + `&daily=weather_code,temperature_2m_max,temperature_2m_min`
-          + `&temperature_unit=fahrenheit`
-          + `&wind_speed_unit=mph`
-          + `&timezone=America/Denver`
-          + `&forecast_days=4`;
+          // Filter out night blocks so we only get clean consecutive days (Today, Tomorrow, etc.)
+          const allPeriods = data.properties.periods;
+          rawForecastData[key] = allPeriods.filter(period => period.isDaytime === true).slice(0, 4);
 
-        const res = await fetch(url);
-        const data = await res.json();
-
-        // ── Current conditions ──────────────────────────────────
-        const c = data.current;
-        const [desc, icon] = wmoLabel(c.weather_code);
-
-        document.getElementById('w-temp').textContent =
-          Math.round(c.temperature_2m) + '°F';
-        document.getElementById('w-desc').textContent =
-          icon + ' ' + desc;
-        document.getElementById('w-meta').textContent =
-          `Humidity ${c.relative_humidity_2m}% · Wind ${Math.round(c.wind_speed_10m)} mph`;
-
-        // ── 4-day forecast ──────────────────────────────────────
-        const d = data.daily;
-        const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-        let forecastHTML = '';
-
-        for (let i = 0; i < 4; i++) {
-          const date = new Date(d.time[i] + 'T12:00:00');
-          const dayName = i === 0 ? 'Today' : days[date.getDay()];
-          const [, fIcon] = wmoLabel(d.weather_code[i]);
-          const hi = Math.round(d.temperature_2m_max[i]);
-          const lo = Math.round(d.temperature_2m_min[i]);
-          forecastHTML += `
-          <div class="forecast-day">
-            <strong>${dayName}</strong>
-            <div class="forecast-icon">${fIcon}</div>
-            <div>${hi}° / ${lo}°</div>
-          </div>`;
+          updateWeatherUI(key);
+        } catch (error) {
+          document.getElementById(`forecast-${key}`).innerHTML = `<div style="font-size:0.85rem; opacity:0.6; padding:10px; grid-column: 1/-1;">Forecast currently unavailable from NOAA.</div>`;
+          console.error(error);
         }
-        document.getElementById('w-forecast').innerHTML = forecastHTML;
-
-      } catch (err) {
-        // If fetch fails (offline, etc.) show a polite fallback
-        document.getElementById('w-temp').style.display = 'none';
-        document.getElementById('w-desc').style.display = 'none';
-        document.getElementById('w-meta').style.display = 'none';
-        const errEl = document.getElementById('weather-error');
-        errEl.style.display = 'block';
-        errEl.textContent = '⚠️ Weather unavailable — check https://forecast.weather.gov';
       }
     }
 
-    // Load weather on page load
-    loadWeather();
+    function updateWeatherUI(key) {
+      const container = document.getElementById(`forecast-${key}`);
+      const dayBlocks = rawForecastData[key];
 
+      if (!dayBlocks || dayBlocks.length === 0) return;
 
-    /* ══════════════════════════════════════════════════════════════
-       SECTION B — PACKING CHECKLIST
-       Reads/writes to localStorage so state persists across sessions.
-       Storage key prefix: 'roadtrip_pack_'
-  
-       toggleItem(el)  — called when user clicks a list item
-       checkAll()      — marks everything done
-       clearAll()      — clears all checks
-       updateProgress()— refreshes the progress bar and counter
-       ══════════════════════════════════════════════════════════════ */
-
-    const STORAGE_PREFIX = 'roadtrip_pack_'; // change if you want a new namespace
-
-    // Run on page load — restore saved state from localStorage
-    document.addEventListener('DOMContentLoaded', () => {
-      const items = document.querySelectorAll('.checklist-item');
-      items.forEach(item => {
-        const key = STORAGE_PREFIX + item.dataset.item;
-        const done = localStorage.getItem(key) === 'true';
-        if (done) {
-          item.classList.add('done');
-          item.querySelector('input').checked = true;
+      // Build the horizontal grid columns dynamically
+      container.innerHTML = dayBlocks.map((day, index) => {
+        let tempDisplay = `${day.temperature}°F`;
+        if (currentUnit === 'C') {
+          const celsius = Math.round((day.temperature - 32) * 5 / 9);
+          tempDisplay = `${celsius}°C`;
         }
-      });
-      updateProgress();
+
+        // Use the default label if it's index 0 (e.g. "Today"), otherwise extract short day names like "Tue", "Wed"
+        const titleName = (index === 0) ? day.name : day.name.substring(0, 3);
+
+        return `
+            <div style="background: rgba(255, 255, 255, 0.06); padding: 12px 8px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05); display: flex; flex-direction: column; justify-content: space-between; align-items: center; min-height: 105px;">
+                <div style="font-size: 0.8rem; font-weight: 600; text-transform: uppercase; opacity: 0.7; letter-spacing: 0.5px;">${titleName}</div>
+                <div style="font-size: 1.3rem; font-weight: bold; margin: 4px 0; color: #ffffff;">${tempDisplay}</div>
+                <div style="font-size: 0.7rem; opacity: 0.8; line-height: 1.2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;" title="${day.shortForecast}">
+                    ${day.shortForecast}
+                </div>
+            </div>
+        `;
+      }).join('');
+    }
+
+    function toggleUnits() {
+      const btn = document.getElementById('unitToggle');
+      currentUnit = (currentUnit === 'F') ? 'C' : 'F';
+      btn.innerText = (currentUnit === 'F') ? "Switch to °C" : "Switch to °F";
+
+      // Quick re-render using local cached data arrays
+      for (const key of Object.keys(weatherStations)) {
+        updateWeatherUI(key);
+      }
+    }
+
+    // Ensure execution triggers smoothly when page components render
+    window.addEventListener('DOMContentLoaded', () => {
+      fetchWeather();
     });
-
-    function toggleItem(el) {
-      const isDone = el.classList.toggle('done');
-      el.querySelector('input').checked = isDone;
-      // Save state to localStorage
-      localStorage.setItem(STORAGE_PREFIX + el.dataset.item, isDone);
-      updateProgress();
-    }
-
-    function checkAll() {
-      document.querySelectorAll('.checklist-item').forEach(el => {
-        el.classList.add('done');
-        el.querySelector('input').checked = true;
-        localStorage.setItem(STORAGE_PREFIX + el.dataset.item, 'true');
-      });
-      updateProgress();
-    }
-
-    function clearAll() {
-      document.querySelectorAll('.checklist-item').forEach(el => {
-        el.classList.remove('done');
-        el.querySelector('input').checked = false;
-        localStorage.removeItem(STORAGE_PREFIX + el.dataset.item);
-      });
-      updateProgress();
-    }
-
-    function updateProgress() {
-      const all = document.querySelectorAll('.checklist-item');
-      const done = document.querySelectorAll('.checklist-item.done');
-      const pct = all.length ? Math.round((done.length / all.length) * 100) : 0;
-      document.getElementById('checklist-progress').style.width = pct + '%';
-      document.getElementById('checklist-status').textContent =
-        `${done.length} of ${all.length} packed${pct === 100 ? ' ✅ Ready to go!' : ''}`;
-    }
+  </script>
 
 
-    /* ══════════════════════════════════════════════════════════════
-       SECTION C — ETA CALCULATOR
-       Drive times are in minutes from SLC.
-       To edit: change the 'offsetMin' values in etaStops below.
-       To add a stop: add a new object to the etaStops array.
-  
-       Format: { name, note, offsetMin, tip }
-         name      — display name of destination
-         note      — short drive-time description shown under name
-         offsetMin — total minutes from SLC departure
-         tip       — optional italic note shown in the card
-       ══════════════════════════════════════════════════════════════ */
 
-    // ↓ EDIT THESE STOPS ↓ (offsetMin = total minutes from SLC)
-    const etaStops = [
-      {
-        name: 'Jackson, WY',
-        note: 'Via I-15 N + US-189 N + US-26 E',
-        offsetMin: 300,   // 5 hours
-        tip: 'Add ~30 min for stops & construction delays'
-      },
-      {
-        name: 'Grand Teton N.P. (South Entrance)',
-        note: '15 min north of Jackson',
-        offsetMin: 315,   // 5 hrs 15 min
-        tip: 'Moose Entrance · Jenny Lake is 10 min further'
-      },
-      {
-        name: 'Yellowstone South Entrance',
-        note: '1 hr 15 min north of Jackson',
-        offsetMin: 375,   // 6 hrs 15 min
-        tip: 'Old Faithful is ~30 min past the entrance'
-      },
-    ];
+  /* ══════════════════════════════════════════════════════════════
+  SECTION B — PACKING CHECKLIST
+  Reads/writes to localStorage so state persists across sessions.
+  Storage key prefix: 'roadtrip_pack_'
 
-    // Day labels — match your itinerary dates
-    // Index 0 = first option in the select, etc.
-    const DAY_LABELS = [
-      'Friday, July 11',
-      'Saturday, July 12',
-      'Sunday, July 13',
-    ];
+  toggleItem(el) — called when user clicks a list item
+  checkAll() — marks everything done
+  clearAll() — clears all checks
+  updateProgress()— refreshes the progress bar and counter
+  ══════════════════════════════════════════════════════════════ */
 
-    function calcETA() {
-      const timeVal = document.getElementById('depart-time').value; // "HH:MM"
-      const dayIdx = parseInt(document.getElementById('depart-day').value);
-      if (!timeVal) return;
+  const STORAGE_PREFIX = 'roadtrip_pack_'; // change if you want a new namespace
 
-      const [hh, mm] = timeVal.split(':').map(Number);
-      const departMinutes = hh * 60 + mm; // minutes since midnight
+  // Run on page load — restore saved state from localStorage
+  document.addEventListener('DOMContentLoaded', () => {
+  const items = document.querySelectorAll('.checklist-item');
+  items.forEach(item => {
+  const key = STORAGE_PREFIX + item.dataset.item;
+  const done = localStorage.getItem(key) === 'true';
+  if (done) {
+  item.classList.add('done');
+  item.querySelector('input').checked = true;
+  }
+  });
+  updateProgress();
+  });
 
-      const resultsEl = document.getElementById('eta-results');
-      resultsEl.innerHTML = '';
+  function toggleItem(el) {
+  const isDone = el.classList.toggle('done');
+  el.querySelector('input').checked = isDone;
+  // Save state to localStorage
+  localStorage.setItem(STORAGE_PREFIX + el.dataset.item, isDone);
+  updateProgress();
+  }
 
-      etaStops.forEach(stop => {
-        const arrivalMin = departMinutes + stop.offsetMin;
-        const arrivalHour = Math.floor(arrivalMin / 60) % 24;
-        const arrivalMins = arrivalMin % 60;
-        const ampm = arrivalHour >= 12 ? 'PM' : 'AM';
-        const displayHour = arrivalHour % 12 || 12;
-        const displayMins = String(arrivalMins).padStart(2, '0');
+  function checkAll() {
+  document.querySelectorAll('.checklist-item').forEach(el => {
+  el.classList.add('done');
+  el.querySelector('input').checked = true;
+  localStorage.setItem(STORAGE_PREFIX + el.dataset.item, 'true');
+  });
+  updateProgress();
+  }
 
-        // Determine if arrival is "next day" (crossed midnight)
-        const crossedMidnight = (departMinutes + stop.offsetMin) >= 1440;
-        const dayLabel = DAY_LABELS[dayIdx + (crossedMidnight ? 1 : 0)] || '';
+  function clearAll() {
+  document.querySelectorAll('.checklist-item').forEach(el => {
+  el.classList.remove('done');
+  el.querySelector('input').checked = false;
+  localStorage.removeItem(STORAGE_PREFIX + el.dataset.item);
+  });
+  updateProgress();
+  }
 
-        resultsEl.innerHTML += `
-        <div class="eta-stop">
-          <h4>${stop.name}</h4>
-          <div class="eta-drive">🚗 ${stop.note}</div>
-          <div class="eta-time">${displayHour}:${displayMins} ${ampm}</div>
-          <div class="eta-date">${dayLabel}</div>
-          ${stop.tip ? `<div class="eta-note">💡 ${stop.tip}</div>` : ''}
-        </div>`;
-      });
-    }
+  function updateProgress() {
+  const all = document.querySelectorAll('.checklist-item');
+  const done = document.querySelectorAll('.checklist-item.done');
+  const pct = all.length ? Math.round((done.length / all.length) * 100) : 0;
+  document.getElementById('checklist-progress').style.width = pct + '%';
+  document.getElementById('checklist-status').textContent =
+  `${done.length} of ${all.length} packed${pct === 100 ? ' ✅ Ready to go!' : ''}`;
+  }
 
-    // Initialize ETA on load
-    calcETA();
+
+  /* ══════════════════════════════════════════════════════════════
+  SECTION C — ETA CALCULATOR
+  Drive times are in minutes from SLC.
+  To edit: change the 'offsetMin' values in etaStops below.
+  To add a stop: add a new object to the etaStops array.
+
+  Format: { name, note, offsetMin, tip }
+  name — display name of destination
+  note — short drive-time description shown under name
+  offsetMin — total minutes from SLC departure
+  tip — optional italic note shown in the card
+  ══════════════════════════════════════════════════════════════ */
+
+  // ↓ EDIT THESE STOPS ↓ (offsetMin = total minutes from SLC)
+  const etaStops = [
+  {
+  name: 'Jackson, WY',
+  note: 'Via I-15 N + US-189 N + US-26 E',
+  offsetMin: 300, // 5 hours
+  tip: 'Add ~30 min for stops & construction delays'
+  },
+  {
+  name: 'Grand Teton N.P. (South Entrance)',
+  note: '15 min north of Jackson',
+  offsetMin: 315, // 5 hrs 15 min
+  tip: 'Moose Entrance · Jenny Lake is 10 min further'
+  },
+  {
+  name: 'Yellowstone South Entrance',
+  note: '1 hr 15 min north of Jackson',
+  offsetMin: 375, // 6 hrs 15 min
+  tip: 'Old Faithful is ~30 min past the entrance'
+  },
+  ];
+
+  // Day labels — match your itinerary dates
+  // Index 0 = first option in the select, etc.
+  const DAY_LABELS = [
+  'Friday, July 11',
+  'Saturday, July 12',
+  'Sunday, July 13',
+  ];
+
+  function calcETA() {
+  const timeVal = document.getElementById('depart-time').value; // "HH:MM"
+  const dayIdx = parseInt(document.getElementById('depart-day').value);
+  if (!timeVal) return;
+
+  const [hh, mm] = timeVal.split(':').map(Number);
+  const departMinutes = hh * 60 + mm; // minutes since midnight
+
+  const resultsEl = document.getElementById('eta-results');
+  resultsEl.innerHTML = '';
+
+  etaStops.forEach(stop => {
+  const arrivalMin = departMinutes + stop.offsetMin;
+  const arrivalHour = Math.floor(arrivalMin / 60) % 24;
+  const arrivalMins = arrivalMin % 60;
+  const ampm = arrivalHour >= 12 ? 'PM' : 'AM';
+  const displayHour = arrivalHour % 12 || 12;
+  const displayMins = String(arrivalMins).padStart(2, '0');
+
+  // Determine if arrival is "next day" (crossed midnight)
+  const crossedMidnight = (departMinutes + stop.offsetMin) >= 1440;
+  const dayLabel = DAY_LABELS[dayIdx + (crossedMidnight ? 1 : 0)] || '';
+
+  resultsEl.innerHTML += `
+  <div class="eta-stop">
+    <h4>${stop.name}</h4>
+    <div class="eta-drive">🚗 ${stop.note}</div>
+    <div class="eta-time">${displayHour}:${displayMins} ${ampm}</div>
+    <div class="eta-date">${dayLabel}</div>
+    ${stop.tip ? `<div class="eta-note">💡 ${stop.tip}</div>` : ''}
+  </div>`;
+  });
+  }
+
+  // Initialize ETA on load
+  calcETA();
 
   </script>
 
