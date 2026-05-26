@@ -855,11 +855,10 @@
             style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; text-align: center;">
             <div style="font-size: 0.85rem; opacity: 0.7; padding: 10px;">Loading multi-day forecast...</div>
           </div>
+
         </div>
 
       </div>
-
-    </div>
   </header>
 
 
@@ -875,17 +874,27 @@
            To edit a destination name/time: find the etaStops array.
            ════════════════════════════════════════════════════════ -->
       <section id="eta">
-        <div class="section-label">🕐 Departure & ETA Calculator</div>
+        <div class="section-label">🕐 Route & ETA Calculator</div>
 
         <div class="card">
           <p style="font-size:.9rem;color:var(--stone);margin-bottom:1rem;">
-            Enter your departure time from Salt Lake City to calculate arrival windows.
+            Select your route combination and departure time to dynamically calculate arrival windows.
           </p>
 
           <div class="eta-input-row">
             <div>
-              <label for="depart-time">Departure Time (SLC)</label>
-              <!-- Default is 8:00 AM — change the value attribute below -->
+              <label for="depart-origin">Starting From</label>
+              <select id="depart-origin" onchange="calcETA()">
+                <option value="slc">Salt Lake City, UT</option>
+                <option value="jackson">Jackson, WY / Lodging</option>
+                <option value="teton">Grand Teton National Park</option>
+                <option value="bear_world">Bear World</option>
+                <option value="yellowstone">Yellowstone (South Entrance)</option>
+                <option value="yellowstone_west">Yellowstone (West Entrance)</option>
+              </select>
+            </div>
+            <div>
+              <label for="depart-time">Departure Time</label>
               <input type="time" id="depart-time" value="07:00" oninput="calcETA()" />
             </div>
             <div>
@@ -984,7 +993,7 @@
           <div class="day-header">
             <!-- ↓ CHANGE DAY LABEL & TITLE ↓ -->
             <span class="day-pill">Day 1 · Sat May 30</span>
-            <span class="day-title">The Drive Up</span>
+            <span class="day-title">Grand Teton</span>
           </div>
 
           <ul class="stop-list">
@@ -1078,8 +1087,8 @@
         <div class="itinerary-day card" style="margin-bottom:1.2rem;">
           <div class="day-header">
             <!-- ↓ CHANGE DAY LABEL & TITLE ↓ -->
-            <span class="day-pill">Day 2 · Sat Jul 12</span>
-            <span class="day-title">Grand Teton National Park</span>
+            <span class="day-pill">Day 2 · Sat May 31</span>
+            <span class="day-title">Yellowstone</span>
           </div>
 
           <ul class="stop-list">
@@ -1460,22 +1469,56 @@
 
       if (!dayBlocks || dayBlocks.length === 0) return;
 
-      // Build the horizontal grid columns dynamically
       container.innerHTML = dayBlocks.map((day, index) => {
-        let tempDisplay = `${day.temperature}°F`;
+        // 1. Calculate main dynamic temp conversions
+        let mainTempF = day.temperature;
+        let tempDisplay = `${mainTempF}°F`;
+
+        // Estimate a standard diurnal low spread for the card layout context since we filter daytime arrays
+        let lowTempF = mainTempF - 18;
+        let lowDisplay = `${lowTempF}°F`;
+
         if (currentUnit === 'C') {
-          const celsius = Math.round((day.temperature - 32) * 5 / 9);
-          tempDisplay = `${celsius}°C`;
+          const celsiusHigh = Math.round((mainTempF - 32) * 5 / 9);
+          const celsiusLow = Math.round((lowTempF - 32) * 5 / 9);
+          tempDisplay = `${celsiusHigh}°C`;
+          lowDisplay = `${celsiusLow}°C`;
         }
 
-        // Use the default label if it's index 0 (e.g. "Today"), otherwise extract short day names like "Tue", "Wed"
+        // 2. Intelligent Forecast Keyword Emoji Parser
+        const conditionText = (day.shortForecast || "").toLowerCase();
+        let conditionEmoji = "🌤️"; // baseline default layout fallback
+
+        if (conditionText.includes("thunderstorm") || conditionText.includes("tstorm")) {
+          conditionEmoji = "⛈️";
+        } else if (conditionText.includes("shower") || conditionText.includes("rain")) {
+          conditionEmoji = "🌧️";
+        } else if (conditionText.includes("snow") || conditionText.includes("flurry")) {
+          conditionEmoji = "❄️";
+        } else if (conditionText.includes("wind") || conditionText.includes("breezy")) {
+          conditionEmoji = "💨";
+        } else if (conditionText.includes("mostly sunny") || conditionText.includes("partly cloudy")) {
+          conditionEmoji = "⛅";
+        } else if (conditionText.includes("cloudy") || conditionText.includes("overcast")) {
+          conditionEmoji = "☁️";
+        } else if (conditionText.includes("sunny") || conditionText.includes("clear")) {
+          conditionEmoji = "☀️";
+        }
+
         const titleName = (index === 0) ? day.name : day.name.substring(0, 3);
 
         return `
-            <div style="background: rgba(255, 255, 255, 0.06); padding: 12px 8px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05); display: flex; flex-direction: column; justify-content: space-between; align-items: center; min-height: 105px;">
-                <div style="font-size: 0.8rem; font-weight: 600; text-transform: uppercase; opacity: 0.7; letter-spacing: 0.5px;">${titleName}</div>
-                <div style="font-size: 1.3rem; font-weight: bold; margin: 4px 0; color: #ffffff;">${tempDisplay}</div>
-                <div style="font-size: 0.7rem; opacity: 0.8; line-height: 1.2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;" title="${day.shortForecast}">
+            <div style="background: rgba(255, 255, 255, 0.06); padding: 12px 6px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05); display: flex; flex-direction: column; justify-content: space-between; align-items: center; min-height: 120px;">
+                <div style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; opacity: 0.7; letter-spacing: 0.5px; color: #ffffff;">${titleName}</div>
+                
+                <div style="font-size: 1.6rem; margin: 2px 0;" title="${day.shortForecast}">${conditionEmoji}</div>
+                
+                <div style="margin: 2px 0;">
+                  <span style="font-size: 1.15rem; font-weight: bold; color: #ffffff;">${tempDisplay}</span>
+                  <span style="font-size: 0.8rem; opacity: 0.5; margin-left: 4px; color: #fdfdfd;">${lowDisplay}</span>
+                </div>
+                
+                <div style="font-size: 0.68rem; opacity: 0.8; line-height: 1.2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; color: #ffffff;" title="${day.shortForecast}">
                     ${day.shortForecast}
                 </div>
             </div>
@@ -1497,6 +1540,7 @@
     // Ensure execution triggers smoothly when page components render
     window.addEventListener('DOMContentLoaded', () => {
       fetchWeather();
+      calcETA(); // <-- ADD JUST THIS ONE LINE HERE
     });
     /* ══════════════════════════════════════════════════════════════
    SECTION B — PACKING CHECKLIST
@@ -1586,52 +1630,148 @@
 
 
     // ↓ EDIT THESE STOPS ↓ (offsetMin = total minutes from SLC)
-    const etaStops = [
-      {
-        name: 'Jackson, WY',
-        note: 'Via I-15 N + US-189 N + US-26 E',
-        offsetMin: 300,   // 5 hours
-        tip: 'Add ~30 min for stops & construction delays'
-      },
-      {
-        name: 'Grand Teton N.P. (South Entrance)',
-        note: '15 min north of Jackson',
-        offsetMin: 315,   // 5 hrs 15 min
-        tip: 'Moose Entrance · Jenny Lake is 10 min further'
-      },
-      {
-        name: 'Yellowstone South Entrance',
-        note: '1 hr 15 min north of Jackson',
-        offsetMin: 375,   // 6 hrs 15 min
-        tip: 'Old Faithful is ~30 min past the entrance'
-      },
-    ];
+    // const etaStops = [
+    //   {
+    //     name: 'Jackson, WY',
+    //     note: 'Via I-15 N + US-189 N + US-26 E',
+    //     offsetMin: 300,   // 5 hours
+    //     tip: 'Add ~30 min for stops & construction delays'
+    //   },
+    //   {
+    //     name: 'Grand Teton N.P. (South Entrance)',
+    //     note: '15 min north of Jackson',
+    //     offsetMin: 315,   // 5 hrs 15 min
+    //     tip: 'Moose Entrance · Jenny Lake is 10 min further'
+    //   },
+    //   {
+    //     name: 'Yellowstone South Entrance',
+    //     note: '1 hr 15 min north of Jackson',
+    //     offsetMin: 375,   // 6 hrs 15 min
+    //     tip: 'Old Faithful is ~30 min past the entrance'
+    //   },
+    // ];
 
 
-    // Day labels — match your itinerary dates
-    // Index 0 = first option in the select, etc.
+    // // Day labels — match your itinerary dates
+    // // Index 0 = first option in the select, etc.
+    // const DAY_LABELS = [
+    //   'Friday, July 11',
+    //   'Saturday, July 12',
+    //   'Sunday, July 13',
+    // ];
+
+
+    // function calcETA() {
+    //   const timeVal = document.getElementById('depart-time').value; // "HH:MM"
+    //   const dayIdx = parseInt(document.getElementById('depart-day').value);
+    //   if (!timeVal) return;
+
+
+    //   const [hh, mm] = timeVal.split(':').map(Number);
+    //   const departMinutes = hh * 60 + mm; // minutes since midnight
+
+
+    //   const resultsEl = document.getElementById('eta-results');
+    //   resultsEl.innerHTML = '';
+
+
+    //   etaStops.forEach(stop => {
+    //     const arrivalMin = departMinutes + stop.offsetMin;
+    //     const arrivalHour = Math.floor(arrivalMin / 60) % 24;
+    //     const arrivalMins = arrivalMin % 60;
+    //     const ampm = arrivalHour >= 12 ? 'PM' : 'AM';
+    //     const displayHour = arrivalHour % 12 || 12;
+    //     const displayMins = String(arrivalMins).padStart(2, '0');
+
+
+    //     // Determine if arrival is "next day" (crossed midnight)
+    //     const crossedMidnight = (departMinutes + stop.offsetMin) >= 1440;
+    //     const dayLabel = DAY_LABELS[dayIdx + (crossedMidnight ? 1 : 0)] || '';
+
+
+    //     resultsEl.innerHTML += `
+    //    <div class="eta-stop">
+    //      <h4>${stop.name}</h4>
+    //      <div class="eta-drive">🚗 ${stop.note}</div>
+    //      <div class="eta-time">${displayHour}:${displayMins} ${ampm}</div>
+    //      <div class="eta-date">${dayLabel}</div>
+    //      ${stop.tip ? `<div class="eta-note">💡 ${stop.tip}</div>` : ''}
+    //    </div>`;
+    //   });
+    // }
+
+
+    // // Initialize ETA on load
+    // calcETA();
+
+    // Complete Route Matrix Map (Durations defined in total minutes)
+    const routeMatrix = {
+      slc: [
+        { name: 'Jackson, WY', note: 'Via I-15 N + US-189 N', offsetMin: 300, tip: 'Beautiful scenic canyons on approach.' },
+        { name: 'Grand Teton N.P. (Moose)', note: 'Passes through Jackson', offsetMin: 315, tip: 'Jenny Lake parking lots fill up fast!' },
+        { name: 'Bear World (Rexburg, ID)', note: 'Via I-15 N to exit 332', offsetMin: 220, tip: 'Great halfway point break stretch.' },
+        { name: 'Yellowstone South Entrance', note: 'Via Jackson Hole highway', offsetMin: 375, tip: 'Watch out for bison/elk roadblocks.' },
+        { name: 'Yellowstone West Entrance', note: 'Via I-15 N to US-20 E', offsetMin: 290, tip: 'Fastest route from SLC to see geysers!' } // <-- ADDED HERE
+      ],
+      jackson: [
+        { name: 'Grand Teton N.P. (Moose)', note: 'Direct shot North on US-191', offsetMin: 15, tip: 'Stunning early morning mountain views.' },
+        { name: 'Yellowstone South Entrance', note: 'Straight line past Jackson Lake', offsetMin: 75, tip: 'Check active park construction statuses.' },
+        { name: 'Yellowstone West Entrance', note: 'Via US-191 N through park or ID-33', offsetMin: 140, tip: 'Beautiful drive through Idaho or the park.' }, // <-- ADDED HERE
+        { name: 'Bear World (Rexburg, ID)', note: 'Via Teton Pass (WY-22 W)', offsetMin: 95, tip: 'Teton Pass is steep; check your brakes!' },
+        { name: 'Salt Lake City, UT', note: 'Head down via Star Valley route', offsetMin: 300, tip: 'Stop in Montpelier or Logan for gas.' }
+      ],
+      teton: [
+        { name: 'Yellowstone South Entrance', note: 'Drive directly North through park road', offsetMin: 60, tip: 'Requires National Park pass validation.' },
+        { name: 'Yellowstone West Entrance', note: 'Drive North through park or head West into ID', offsetMin: 130, tip: 'Stunning mountain-to-plateau transition.' }, // <-- ADDED HERE
+        { name: 'Jackson, WY', note: 'Drive South past National Elk Refuge', offsetMin: 15, tip: 'Easy drive back for lunch or dining.' },
+        { name: 'Bear World (Rexburg, ID)', note: 'Go via Swan Valley highway', offsetMin: 90, tip: 'Grab a square ice cream cone in Swan Valley!' },
+        { name: 'Salt Lake City, UT', note: 'Long haul heading South bound', offsetMin: 315, tip: 'Calculate fuel stops ahead.' }
+      ],
+      yellowstone: [
+        { name: 'Grand Teton N.P. (Moose)', note: 'Drive Southbound past Jackson Lake', offsetMin: 60, tip: 'Incredible reflection photography spots.' },
+        { name: 'Jackson, WY', note: 'South past Teton park limits', offsetMin: 75, tip: 'Good milestone marker for dinner plans.' },
+        { name: 'Bear World (Rexburg, ID)', note: 'West through West Thumb or South route', offsetMin: 110, tip: 'Great diversion route on the way back home.' },
+        { name: 'Salt Lake City, UT', note: 'Full return drive home sequence', offsetMin: 375, tip: 'Plan for dinner stretch in Idaho Falls.' }
+      ],
+      // IF YOU WANT WEST YELLOWSTONE TO BE A STARTING OPTION TOO, ADD THIS ENTIRE KEY:
+      yellowstone_west: [
+        { name: 'Salt Lake City, UT', note: 'Via US-20 W to I-15 S', offsetMin: 290, tip: 'Easy multi-lane highway driving.' },
+        { name: 'Jackson, WY', note: 'Via US-191 S or through Idaho', offsetMin: 140, tip: 'Stop by Mesa Falls on the Idaho side if time permits.' },
+        { name: 'Grand Teton N.P. (Moose)', note: 'Drive South through Yellowstone', offsetMin: 130, tip: 'Incredible geyser-to-peak views.' },
+        { name: 'Bear World (Rexburg, ID)', note: 'Straight shot South on US-20', offsetMin: 65, tip: 'Perfect quick stop on your way down.' }
+      ],
+
+      bear_world: [
+        { name: 'Salt Lake City, UT', note: 'Via US-20 W to I-15 S', offsetMin: 290, tip: 'Easy multi-lane highway driving.' },
+        { name: 'Jackson, WY', note: 'Via I-15 N + US-189 N', offsetMin: 300, tip: 'Beautiful scenic canyons on approach.' },
+        { name: 'Grand Teton N.P. (Moose)', note: 'Passes through Jackson', offsetMin: 315, tip: 'Jenny Lake parking lots fill up fast!' },
+        { name: 'Yellowstone South Entrance', note: 'Via Jackson Hole highway', offsetMin: 375, tip: 'Watch out for bison/elk roadblocks.' },
+        { name: 'Yellowstone West Entrance', note: 'Via I-15 N to US-20 E', offsetMin: 290, tip: 'Fastest route from SLC to see geysers!' }
+      ]
+    };
+
     const DAY_LABELS = [
-      'Friday, July 11',
-      'Saturday, July 12',
-      'Sunday, July 13',
+      'Saturday, May 30',
+      'Sunday, May 31',
+      'Monday, June 1',
     ];
-
 
     function calcETA() {
-      const timeVal = document.getElementById('depart-time').value; // "HH:MM"
+      const originKey = document.getElementById('depart-origin').value;
+      const timeVal = document.getElementById('depart-time').value;
       const dayIdx = parseInt(document.getElementById('depart-day').value);
+
       if (!timeVal) return;
 
-
       const [hh, mm] = timeVal.split(':').map(Number);
-      const departMinutes = hh * 60 + mm; // minutes since midnight
-
+      const departMinutes = hh * 60 + mm;
 
       const resultsEl = document.getElementById('eta-results');
       resultsEl.innerHTML = '';
 
+      const selectedStops = routeMatrix[originKey] || [];
 
-      etaStops.forEach(stop => {
+      selectedStops.forEach(stop => {
         const arrivalMin = departMinutes + stop.offsetMin;
         const arrivalHour = Math.floor(arrivalMin / 60) % 24;
         const arrivalMins = arrivalMin % 60;
@@ -1639,26 +1779,19 @@
         const displayHour = arrivalHour % 12 || 12;
         const displayMins = String(arrivalMins).padStart(2, '0');
 
-
-        // Determine if arrival is "next day" (crossed midnight)
         const crossedMidnight = (departMinutes + stop.offsetMin) >= 1440;
         const dayLabel = DAY_LABELS[dayIdx + (crossedMidnight ? 1 : 0)] || '';
 
-
         resultsEl.innerHTML += `
-       <div class="eta-stop">
-         <h4>${stop.name}</h4>
-         <div class="eta-drive">🚗 ${stop.note}</div>
-         <div class="eta-time">${displayHour}:${displayMins} ${ampm}</div>
-         <div class="eta-date">${dayLabel}</div>
-         ${stop.tip ? `<div class="eta-note">💡 ${stop.tip}</div>` : ''}
-       </div>`;
+          <div class="eta-stop">
+            <h4>To: ${stop.name}</h4>
+            <div class="eta-drive">🚗 ${stop.note}</div>
+            <div class="eta-time">${displayHour}:${displayMins} ${ampm}</div>
+            <div class="eta-date">${dayLabel}</div>
+            ${stop.tip ? `<div class="eta-note">💡 ${stop.tip}</div>` : ''}
+          </div>`;
       });
-    }
-
-
-    // Initialize ETA on load
-    calcETA();
+    };
 
 
   </script>
