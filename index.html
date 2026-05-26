@@ -1498,4 +1498,172 @@
     window.addEventListener('DOMContentLoaded', () => {
       fetchWeather();
     });
+    /* ══════════════════════════════════════════════════════════════
+   SECTION B — PACKING CHECKLIST
+   Reads/writes to localStorage so state persists across sessions.
+   Storage key prefix: 'roadtrip_pack_'
+
+
+   toggleItem(el)  — called when user clicks a list item
+   checkAll()      — marks everything done
+   clearAll()      — clears all checks
+   updateProgress()— refreshes the progress bar and counter
+   ══════════════════════════════════════════════════════════════ */
+
+
+    const STORAGE_PREFIX = 'roadtrip_pack_'; // change if you want a new namespace
+
+
+    // Run on page load — restore saved state from localStorage
+    document.addEventListener('DOMContentLoaded', () => {
+      const items = document.querySelectorAll('.checklist-item');
+      items.forEach(item => {
+        const key = STORAGE_PREFIX + item.dataset.item;
+        const done = localStorage.getItem(key) === 'true';
+        if (done) {
+          item.classList.add('done');
+          item.querySelector('input').checked = true;
+        }
+      });
+      updateProgress();
+    });
+
+
+    function toggleItem(el) {
+      const isDone = el.classList.toggle('done');
+      el.querySelector('input').checked = isDone;
+      // Save state to localStorage
+      localStorage.setItem(STORAGE_PREFIX + el.dataset.item, isDone);
+      updateProgress();
+    }
+
+
+    function checkAll() {
+      document.querySelectorAll('.checklist-item').forEach(el => {
+        el.classList.add('done');
+        el.querySelector('input').checked = true;
+        localStorage.setItem(STORAGE_PREFIX + el.dataset.item, 'true');
+      });
+      updateProgress();
+    }
+
+
+    function clearAll() {
+      document.querySelectorAll('.checklist-item').forEach(el => {
+        el.classList.remove('done');
+        el.querySelector('input').checked = false;
+        localStorage.removeItem(STORAGE_PREFIX + el.dataset.item);
+      });
+      updateProgress();
+    }
+
+
+    function updateProgress() {
+      const all = document.querySelectorAll('.checklist-item');
+      const done = document.querySelectorAll('.checklist-item.done');
+      const pct = all.length ? Math.round((done.length / all.length) * 100) : 0;
+      document.getElementById('checklist-progress').style.width = pct + '%';
+      document.getElementById('checklist-status').textContent =
+        `${done.length} of ${all.length} packed${pct === 100 ? ' ✅ Ready to go!' : ''}`;
+    }
+
+
+
+
+    /* ══════════════════════════════════════════════════════════════
+       SECTION C — ETA CALCULATOR
+       Drive times are in minutes from SLC.
+       To edit: change the 'offsetMin' values in etaStops below.
+       To add a stop: add a new object to the etaStops array.
+   
+   
+       Format: { name, note, offsetMin, tip }
+         name      — display name of destination
+         note      — short drive-time description shown under name
+         offsetMin — total minutes from SLC departure
+         tip       — optional italic note shown in the card
+       ══════════════════════════════════════════════════════════════ */
+
+
+    // ↓ EDIT THESE STOPS ↓ (offsetMin = total minutes from SLC)
+    const etaStops = [
+      {
+        name: 'Jackson, WY',
+        note: 'Via I-15 N + US-189 N + US-26 E',
+        offsetMin: 300,   // 5 hours
+        tip: 'Add ~30 min for stops & construction delays'
+      },
+      {
+        name: 'Grand Teton N.P. (South Entrance)',
+        note: '15 min north of Jackson',
+        offsetMin: 315,   // 5 hrs 15 min
+        tip: 'Moose Entrance · Jenny Lake is 10 min further'
+      },
+      {
+        name: 'Yellowstone South Entrance',
+        note: '1 hr 15 min north of Jackson',
+        offsetMin: 375,   // 6 hrs 15 min
+        tip: 'Old Faithful is ~30 min past the entrance'
+      },
+    ];
+
+
+    // Day labels — match your itinerary dates
+    // Index 0 = first option in the select, etc.
+    const DAY_LABELS = [
+      'Friday, July 11',
+      'Saturday, July 12',
+      'Sunday, July 13',
+    ];
+
+
+    function calcETA() {
+      const timeVal = document.getElementById('depart-time').value; // "HH:MM"
+      const dayIdx = parseInt(document.getElementById('depart-day').value);
+      if (!timeVal) return;
+
+
+      const [hh, mm] = timeVal.split(':').map(Number);
+      const departMinutes = hh * 60 + mm; // minutes since midnight
+
+
+      const resultsEl = document.getElementById('eta-results');
+      resultsEl.innerHTML = '';
+
+
+      etaStops.forEach(stop => {
+        const arrivalMin = departMinutes + stop.offsetMin;
+        const arrivalHour = Math.floor(arrivalMin / 60) % 24;
+        const arrivalMins = arrivalMin % 60;
+        const ampm = arrivalHour >= 12 ? 'PM' : 'AM';
+        const displayHour = arrivalHour % 12 || 12;
+        const displayMins = String(arrivalMins).padStart(2, '0');
+
+
+        // Determine if arrival is "next day" (crossed midnight)
+        const crossedMidnight = (departMinutes + stop.offsetMin) >= 1440;
+        const dayLabel = DAY_LABELS[dayIdx + (crossedMidnight ? 1 : 0)] || '';
+
+
+        resultsEl.innerHTML += `
+       <div class="eta-stop">
+         <h4>${stop.name}</h4>
+         <div class="eta-drive">🚗 ${stop.note}</div>
+         <div class="eta-time">${displayHour}:${displayMins} ${ampm}</div>
+         <div class="eta-date">${dayLabel}</div>
+         ${stop.tip ? `<div class="eta-note">💡 ${stop.tip}</div>` : ''}
+       </div>`;
+      });
+    }
+
+
+    // Initialize ETA on load
+    calcETA();
+
+
   </script>
+
+
+</body>
+
+</html>
