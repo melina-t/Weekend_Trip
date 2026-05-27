@@ -595,7 +595,7 @@
 
     .day-title {
       font-family: var(--font-head);
-      font-size: 1.1rem;
+      font-size: .95rem;
       font-weight: bold;
       color: var(--forest);
     }
@@ -639,12 +639,12 @@
 
     .stop-name {
       font-family: var(--font-head);
-      font-size: 1rem;
+      font-size: .9rem;
       color: var(--forest);
     }
 
     .stop-desc {
-      font-size: .9rem;
+      font-size: .85rem;
       color: var(--bark);
     }
 
@@ -1158,115 +1158,116 @@
            Category headers use <p class="checklist-category">.
            Checked state is saved in localStorage automatically.
            ════════════════════════════════════════════════════════ -->
-        <section id="checklist">
-          <div class="section-label">🎒 Packing Checklist</div>
+        <template>
+          <section id="checklist">
+            <div class="section-label">🎒 Packing Checklist</div>
 
-          <div class="card">
-            <!-- Progress bar + counter (updated by JS) -->
-            <div class="checklist-status" id="checklist-status">0 of 0 packed</div>
-            <div class="checklist-progress-bar">
-              <div class="checklist-progress-fill" id="checklist-progress" style="width:0%"></div>
-            </div>
+            <div class="card">
+              <!-- Progress bar + counter (updated by JS) -->
+              <div class="checklist-status" id="checklist-status">0 of 0 packed</div>
+              <div class="checklist-progress-bar">
+                <div class="checklist-progress-fill" id="checklist-progress" style="width:0%"></div>
+              </div>
 
-            <!-- Controls -->
-            <div class="checklist-controls">
-              <button class="btn" onclick="checkAll()">✅ Check All</button>
-              <button class="btn btn-earth" onclick="clearAll()">↩ Clear All</button>
-            </div>
+              <!-- Controls -->
+              <div class="checklist-controls">
+                <button class="btn" onclick="checkAll()">✅ Check All</button>
+                <button class="btn btn-earth" onclick="clearAll()">↩ Clear All</button>
+              </div>
 
-            <!-- ── CATEGORY: SAFETY ──────────────────────────────
+              <!-- ── CATEGORY: SAFETY ──────────────────────────────
                Edit item text directly inside each <label> tag.
                ─────────────────────────────────────────────────── -->
-            <p class="checklist-category">🐻 Safety</p>
-            <ul class="checklist-list" id="checklist-items">
-              <li class="checklist-item" data-item="bear-spray" onclick="toggleItem(this)"><input type="checkbox" />
-                Bear
-                Spray</li>
-              <li class="checklist-item" data-item="first-aid" onclick="toggleItem(this)"><input type="checkbox" />
-                First
-                Aid Kit</li>
-              <li class="checklist-item" data-item="whistle" onclick="toggleItem(this)"><input type="checkbox" />
-                Emergency Whistle</li>
-              <li class="checklist-item" data-item="headlamp" onclick="toggleItem(this)"><input type="checkbox" />
-                Headlamp + Batteries</li>
-              <li class="checklist-item" data-item="sunscreen" onclick="toggleItem(this)"><input type="checkbox" />
-                Sunscreen SPF 50</li>
-              <li class="checklist-item" data-item="bug-spray" onclick="toggleItem(this)"><input type="checkbox" />
-                Bug
-                Spray</li>
-            </ul>
+              <p class="checklist-category">🐻 Safety</p>
+              <ul class="checklist-list" id="checklist-items">
+                <li class="checklist-item" data-item="bear-spray" onclick="toggleItem(this)"><input type="checkbox" />
+                  Bear
+                  Spray</li>
+                <li class="checklist-item" data-item="first-aid" onclick="toggleItem(this)"><input type="checkbox" />
+                  First
+                  Aid Kit</li>
+                <li class="checklist-item" data-item="whistle" onclick="toggleItem(this)"><input type="checkbox" />
+                  Emergency Whistle</li>
+                <li class="checklist-item" data-item="headlamp" onclick="toggleItem(this)"><input type="checkbox" />
+                  Headlamp + Batteries</li>
+                <li class="checklist-item" data-item="sunscreen" onclick="toggleItem(this)"><input type="checkbox" />
+                  Sunscreen SPF 50</li>
+                <li class="checklist-item" data-item="bug-spray" onclick="toggleItem(this)"><input type="checkbox" />
+                  Bug
+                  Spray</li>
+              </ul>
 
-            <!-- ── CATEGORY: CLOTHING ──────────────────────────── -->
-            <p class="checklist-category">👟 Clothing & Footwear</p>
-            <ul class="checklist-list">
-              <li class="checklist-item" data-item="hiking-boots" onclick="toggleItem(this)"><input type="checkbox" />
-                Hiking Boots</li>
-              <li class="checklist-item" data-item="rain-jacket" onclick="toggleItem(this)"><input type="checkbox" />
-                Rain
-                Jacket</li>
-              <li class="checklist-item" data-item="warm-layer" onclick="toggleItem(this)"><input type="checkbox" />
-                Warm
-                Fleece / Layer</li>
-              <li class="checklist-item" data-item="hiking-socks" onclick="toggleItem(this)"><input type="checkbox" />
-                Wool Hiking Socks (x3)</li>
-              <li class="checklist-item" data-item="hat" onclick="toggleItem(this)"><input type="checkbox" /> Sun
-                Hat
-              </li>
-              <li class="checklist-item" data-item="gloves" onclick="toggleItem(this)"><input type="checkbox" />
-                Light
-                Gloves</li>
-            </ul>
+              <!-- ── CATEGORY: CLOTHING ──────────────────────────── -->
+              <p class="checklist-category">👟 Clothing & Footwear</p>
+              <ul class="checklist-list">
+                <li class="checklist-item" data-item="hiking-boots" onclick="toggleItem(this)"><input type="checkbox" />
+                  Hiking Boots</li>
+                <li class="checklist-item" data-item="rain-jacket" onclick="toggleItem(this)"><input type="checkbox" />
+                  Rain
+                  Jacket</li>
+                <li class="checklist-item" data-item="warm-layer" onclick="toggleItem(this)"><input type="checkbox" />
+                  Warm
+                  Fleece / Layer</li>
+                <li class="checklist-item" data-item="hiking-socks" onclick="toggleItem(this)"><input type="checkbox" />
+                  Wool Hiking Socks (x3)</li>
+                <li class="checklist-item" data-item="hat" onclick="toggleItem(this)"><input type="checkbox" /> Sun
+                  Hat
+                </li>
+                <li class="checklist-item" data-item="gloves" onclick="toggleItem(this)"><input type="checkbox" />
+                  Light
+                  Gloves</li>
+              </ul>
 
-            <!-- ── CATEGORY: GEAR ─────────────────────────────── -->
-            <p class="checklist-category">⛺ Gear</p>
-            <ul class="checklist-list">
-              <li class="checklist-item" data-item="daypack" onclick="toggleItem(this)"><input type="checkbox" />
-                Daypack
-              </li>
-              <li class="checklist-item" data-item="water-bottle" onclick="toggleItem(this)"><input type="checkbox" />
-                Water Bottle (32oz)</li>
-              <li class="checklist-item" data-item="trekking-poles" onclick="toggleItem(this)"><input type="checkbox" />
-                Trekking Poles</li>
-              <li class="checklist-item" data-item="binoculars" onclick="toggleItem(this)"><input type="checkbox" />
-                Binoculars</li>
-              <li class="checklist-item" data-item="camera" onclick="toggleItem(this)"><input type="checkbox" />
-                Camera
-                +
-                Charger</li>
-              <li class="checklist-item" data-item="map" onclick="toggleItem(this)"><input type="checkbox" /> Park
-                Map /
-                AllTrails</li>
-            </ul>
+              <!-- ── CATEGORY: GEAR ─────────────────────────────── -->
+              <p class="checklist-category">⛺ Gear</p>
+              <ul class="checklist-list">
+                <li class="checklist-item" data-item="daypack" onclick="toggleItem(this)"><input type="checkbox" />
+                  Daypack
+                </li>
+                <li class="checklist-item" data-item="water-bottle" onclick="toggleItem(this)"><input type="checkbox" />
+                  Water Bottle (32oz)</li>
+                <li class="checklist-item" data-item="trekking-poles" onclick="toggleItem(this)"><input
+                    type="checkbox" />
+                  Trekking Poles</li>
+                <li class="checklist-item" data-item="binoculars" onclick="toggleItem(this)"><input type="checkbox" />
+                  Binoculars</li>
+                <li class="checklist-item" data-item="camera" onclick="toggleItem(this)"><input type="checkbox" />
+                  Camera
+                  +
+                  Charger</li>
+                <li class="checklist-item" data-item="map" onclick="toggleItem(this)"><input type="checkbox" /> Park
+                  Map /
+                  AllTrails</li>
+              </ul>
 
-            <!-- ── CATEGORY: FOOD & SUPPLIES ─────────────────── -->
-            <p class="checklist-category">🥾 Snacks & Supplies</p>
-            <ul class="checklist-list">
-              <li class="checklist-item" data-item="snacks" onclick="toggleItem(this)"><input type="checkbox" />
-                Trail
-                Mix
-                / Snacks</li>
-              <li class="checklist-item" data-item="cooler" onclick="toggleItem(this)"><input type="checkbox" />
-                Cooler
-                +
-                Ice</li>
-              <li class="checklist-item" data-item="cash" onclick="toggleItem(this)"><input type="checkbox" /> Cash
-                (cell
-                service is spotty)</li>
-              <li class="checklist-item" data-item="nps-pass" onclick="toggleItem(this)"><input type="checkbox" />
-                National Parks Pass</li>
-              <li class="checklist-item" data-item="charger" onclick="toggleItem(this)"><input type="checkbox" />
-                Car
-                Charger / Power Bank</li>
-              <li class="checklist-item" data-item="downloaded-maps" onclick="toggleItem(this)"><input
-                  type="checkbox" />
-                Offline Maps Downloaded</li>
-            </ul>
+              <!-- ── CATEGORY: FOOD & SUPPLIES ─────────────────── -->
+              <p class="checklist-category">🥾 Snacks & Supplies</p>
+              <ul class="checklist-list">
+                <li class="checklist-item" data-item="snacks" onclick="toggleItem(this)"><input type="checkbox" />
+                  Trail
+                  Mix
+                  / Snacks</li>
+                <li class="checklist-item" data-item="cooler" onclick="toggleItem(this)"><input type="checkbox" />
+                  Cooler
+                  +
+                  Ice</li>
+                <li class="checklist-item" data-item="cash" onclick="toggleItem(this)"><input type="checkbox" /> Cash
+                  (cell
+                  service is spotty)</li>
+                <li class="checklist-item" data-item="nps-pass" onclick="toggleItem(this)"><input type="checkbox" />
+                  National Parks Pass</li>
+                <li class="checklist-item" data-item="charger" onclick="toggleItem(this)"><input type="checkbox" />
+                  Car
+                  Charger / Power Bank</li>
+                <li class="checklist-item" data-item="downloaded-maps" onclick="toggleItem(this)"><input
+                    type="checkbox" />
+                  Offline Maps Downloaded</li>
+              </ul>
 
-          </div><!-- /card -->
-        </section><!-- /checklist -->
+            </div><!-- /card -->
+          </section><!-- /checklist -->
 
-
-
+        </template>
         <!-- ════════════════════════════════════════════════════════
            DINING RECOMMENDATIONS
            Add/remove/edit dining cards freely.
