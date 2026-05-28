@@ -727,44 +727,47 @@
       .trip-title {
         font-size: 1.7rem;
       }
-
-      /* stack weather vertically */
-      .weather-strip {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: .7rem;
-      }
-
-      .weather-forecast {
-        margin-left: 0;
-      }
-
-      .checklist-list {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      /* ETA inputs stack */
-      .eta-input-row {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .eta-results {
-        grid-template-columns: 1fr;
-      }
-
-      .lodging-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .dining-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .card {
-        padding: 1rem 1.1rem;
-      }
     }
+
+    /* To isolate the horizontal scrolling perfectly without complex syntax, update this final chunk: */
+
+    /* stack weather vertically */
+    .weather-strip {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: .7rem;
+    }
+
+    .weather-forecast {
+      margin-left: 0;
+    }
+
+    .checklist-list {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* ETA inputs stack */
+    .eta-input-row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .eta-results {
+      grid-template-columns: 1fr;
+    }
+
+    .lodging-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .dining-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .card {
+      padding: 1rem 1.1rem;
+    }
+
 
     @media (min-width: 601px) and (max-width: 860px) {
       .trip-title {
@@ -779,6 +782,66 @@
 
     .mt-md {
       margin-top: 1rem;
+    }
+
+    .weather-cities-scroll {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 600px) {
+      .weather-cities-scroll {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 12px;
+        /* negative margin trick so cards bleed to edges and peek next card */
+        margin-left: -16px;
+        margin-right: -16px;
+        padding-left: 16px;
+        padding-right: 16px;
+        /* hide scrollbar visually but keep scroll functional */
+        scrollbar-width: none;
+      }
+
+      .weather-cities-scroll::-webkit-scrollbar {
+        display: none;
+      }
+
+      .weather-city-card {
+        flex: 0 0 82%;
+        /* show ~18% of next card as peek */
+        scroll-snap-align: start;
+      }
+
+      /* Force forecast days inside each card to lay out horizontally */
+      #forecast-jackson,
+      #forecast-teton,
+      #forecast-yellowstone {
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto;
+        gap: 8px;
+        scrollbar-width: none;
+        padding-bottom: 4px;
+      }
+
+      #forecast-jackson::-webkit-scrollbar,
+      #forecast-teton::-webkit-scrollbar,
+      #forecast-yellowstone::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Each day tile: fixed width so they don't squish */
+      #forecast-jackson>div,
+      #forecast-teton>div,
+      #forecast-yellowstone>div {
+        flex: 0 0 110px;
+        min-width: 110px;
+      }
     }
   </style>
 </head>
@@ -838,38 +901,43 @@
           </button>
         </div>
 
-        <div style="margin-bottom: 24px; background: rgba(0, 0, 0, 0.1); padding: 16px; border-radius: 12px;">
-          <h3
-            style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.9; margin-bottom: 12px; color: #fdfdfd; font-weight: bold; border-left: 3px solid #ffffff; padding-left: 8px;">
-            Jackson, WY</h3>
-          <div id="forecast-jackson"
-            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; text-align: center;">
-            <div style="font-size: .9rem; opacity: 0.7; padding: 10px;">Loading multi-day forecast...</div>
-          </div>
-        </div>
+        <div class="weather-cities-scroll">
 
-        <div style="margin-bottom: 24px; background: rgba(0, 0, 0, 0.1); padding: 16px; border-radius: 12px;">
-          <h3
-            style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.9; margin-bottom: 12px; color: #fdfdfd; font-weight: bold; border-left: 3px solid #ffffff; padding-left: 8px;">
-            Grand Teton National Park</h3>
-          <div id="forecast-teton"
-            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; text-align: center;">
-            <div style="font-size: 0.85rem; opacity: 0.7; padding: 10px;">Loading multi-day forecast...</div>
-          </div>
-        </div>
-
-        <div style="background: rgba(0, 0, 0, 0.1); padding: 16px; border-radius: 12px;">
-          <h3
-            style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.9; margin-bottom: 12px; color: #fdfdfd; font-weight: bold; border-left: 3px solid #ffffff; padding-left: 8px;">
-            Yellowstone (South Entrance)</h3>
-          <div id="forecast-yellowstone"
-            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; text-align: center;">
-            <div style="font-size: 0.85rem; opacity: 0.7; padding: 10px;">Loading multi-day forecast...</div>
+          <div class="weather-city-card" style="background: rgba(0, 0, 0, 0.1); padding: 16px; border-radius: 12px;">
+            <h3
+              style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.9; margin-bottom: 12px; color: #fdfdfd; font-weight: bold; border-left: 3px solid #ffffff; padding-left: 8px;">
+              Jackson, WY</h3>
+            <div id="forecast-jackson"
+              style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; text-align: center;">
+              <div style="font-size: .9rem; opacity: 0.7; padding: 10px;">Loading multi-day forecast...</div>
+            </div>
           </div>
 
-        </div>
+          <div class="weather-city-card" style="background: rgba(0, 0, 0, 0.1); padding: 16px; border-radius: 12px;">
+            <h3
+              style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.9; margin-bottom: 12px; color: #fdfdfd; font-weight: bold; border-left: 3px solid #ffffff; padding-left: 8px;">
+              Grand Teton National Park</h3>
+            <div id="forecast-teton"
+              style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; text-align: center;">
+              <div style="font-size: 0.85rem; opacity: 0.7; padding: 10px;">Loading multi-day forecast...</div>
+            </div>
+          </div>
+
+          <div class="weather-city-card" style="background: rgba(0, 0, 0, 0.1); padding: 16px; border-radius: 12px;">
+            <h3
+              style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.9; margin-bottom: 12px; color: #fdfdfd; font-weight: bold; border-left: 3px solid #ffffff; padding-left: 8px;">
+              Yellowstone (South Entrance)</h3>
+            <div id="forecast-yellowstone"
+              style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; text-align: center;">
+              <div style="font-size: 0.85rem; opacity: 0.7; padding: 10px;">Loading multi-day forecast...</div>
+            </div>
+          </div>
+
+        </div><!-- /weather-cities-scroll -->
 
       </div>
+
+    </div>
   </header>
 
 
@@ -1189,20 +1257,6 @@
               <div class="stop-name">Continue to drive through exit</div>
               <!-- <div class="stop-desc">Drive through only </div> -->
             </li>
-
-            <!-- <li>
-              <div class="stop-time">1:30 PM - 2:30 PM</div>
-              <div class="stop-name">Madison River Drive</div>
-              <div class="stop-desc"><b>Address</b>: <a href="https://maps.app.goo.gl/bsZDkpmKCZ1UpWwg7"
-                  target="_blank"> Wyoming 82190</a> -->
-            <!-- <p>Heading towards West Exit</p>
-              </div> -->
-            <!-- <span class="stop-tip"> EDIT </span> -->
-            <!-- <li>
-              <div class="stop-time">3:00 PM</div>
-              <div class="stop-name">Exit park</div> -->
-            <!-- <span class="stop-tip"> EDIT </span> -->
-            <!-- </li> -->
           </ul>
         </div><!-- /day 2 -->
 
@@ -1338,73 +1392,64 @@
                  CHANGE: name, tag, description, Google Maps link
                  ─────────────────────────────────────────────────── -->
               <div class="dining-card">
-                <h4>The Bunnery</h4>
-                <span class="dining-tag">☀️ Breakfast / Brunch</span>
+                <h4>Snake River Brewing</h4>
+                <span class="dining-tag">Dinner</span>
                 <!-- ↓ Edit description ↓ -->
-                <p>Local institution since 1979. Famous for OSM (oats, sunflower, millet) bread. Expect a wait on
-                  weekends
-                  — arrive early or check in for takeout.</p>
+                <p>Closes at 10:00 PM</p>
                 <!-- ↓ PASTE GOOGLE MAPS LINK ↓ -->
-                <a class="btn" href="https://maps.google.com/?q=The+Bunnery+Jackson+WY" target="_blank"
-                  rel="noopener">📍
+                <a class="btn" href="https://maps.app.goo.gl/iWL7CraPwmQpoKJ86" target="_blank" rel="noopener">📍
                   Maps</a>
               </div>
 
               <!-- ── RESTAURANT 2 ── -->
               <div class="dining-card">
-                <h4>Liberty Burger</h4>
-                <span class="dining-tag">🍔 Casual / Lunch</span>
+                <h4>Dornan's Pizza Pasta Company</h4>
+                <span class="dining-tag">Dinner</span>
                 <!-- ↓ Edit description ↓ -->
-                <p>Wyoming beef burgers with local elk and bison options. Great for a quick post-hike lunch. Locally
-                  sourced, no fuss.</p>
-                <a class="btn" href="https://maps.google.com/?q=Liberty+Burger+Jackson+WY" target="_blank"
-                  rel="noopener">📍 Maps</a>
+                <p>Closes at 8:00 PM</p>
+                <a class="btn" href="https://maps.app.goo.gl/Ldx3uyYhufSeGb5K8" target="_blank" rel="noopener">📍
+                  Maps</a>
               </div>
 
               <!-- ── RESTAURANT 3 ── -->
               <div class="dining-card">
-                <h4>Persephone Bakery</h4>
-                <span class="dining-tag">☕ Coffee / Pastries</span>
+                <h4>The Bird</h4>
+                <span class="dining-tag">Dinner</span>
                 <!-- ↓ Edit description ↓ -->
-                <p>Artisan bakery with outstanding espresso and croissants. Perfect for grabbing breakfast before an
-                  early
-                  park start. Beautiful outdoor seating.</p>
-                <a class="btn" href="https://maps.google.com/?q=Persephone+Bakery+Jackson+WY" target="_blank"
-                  rel="noopener">📍 Maps</a>
+                <p>Closes at 9:00 PM</p>
+                <a class="btn" href="https://maps.app.goo.gl/FwmBZFoYqM2jkJB58" target="_blank" rel="noopener">📍
+                  Maps</a>
               </div>
 
               <!-- ── RESTAURANT 4 ── -->
               <div class="dining-card">
-                <h4>Snake River Grill</h4>
-                <span class="dining-tag">🥩 Upscale / Dinner</span>
+                <h4>StillWest Brewery & Grill</h4>
+                <span class="dining-tag">Dinner</span>
                 <!-- ↓ Edit description ↓ -->
-                <p>Local favorite for special dinners. Wyoming game, fresh fish, and a stellar wine list in a warm,
-                  log-cabin atmosphere on Town Square. Reserve ahead.</p>
-                <a class="btn" href="https://maps.google.com/?q=Snake+River+Grill+Jackson+WY" target="_blank"
-                  rel="noopener">📍 Maps</a>
+                <p>Closes at 10:00 PM</p>
+                <a class="btn" href="https://maps.app.goo.gl/x2pUJef4z2wDt8zh6" target="_blank" rel="noopener">📍
+                  Maps</a>
               </div>
 
               <!-- ── RESTAURANT 5 ── -->
               <div class="dining-card">
-                <h4>Anvil Bar &amp; Refuge</h4>
-                <span class="dining-tag">🍺 Drinks / Late Night</span>
+                <h4>Sidewinders American Grill</h4>
+                <span class="dining-tag">Dinner</span>
                 <!-- ↓ Edit description ↓ -->
-                <p>Craft cocktails, cold beer, and a laid-back vibe. Connected to the Anvil Hotel. Great après-hike
-                  spot
-                  with a solid bar snack menu.</p>
-                <a class="btn" href="https://maps.google.com/?q=Anvil+Bar+and+Refuge+Jackson+WY" target="_blank"
-                  rel="noopener">📍 Maps</a>
+                <p>Closes at 10:00 PM</p>
+                <a class="btn" href="https://maps.app.goo.gl/HLQwgK4cfiMiMRir9" target="_blank" rel="noopener">📍
+                  Maps</a>
               </div>
 
               <!-- ── RESTAURANT 6 — blank placeholder ──
                  Duplicate this block and fill in your own pick.
                  ─────────────────────────────────────────────────── -->
               <div class="dining-card">
-                <h4>Your Pick Here</h4>
-                <span class="dining-tag">🍽️ Category</span>
-                <p>Edit this card and add your own restaurant recommendation. Change the name, tag, description, and
-                  Google Maps link above.</p>
-                <a class="btn" href="#" target="_blank" rel="noopener">📍 Maps</a>
+                <h4>Moo's Gourmet Ice Cream</h4>
+                <span class="dining-tag">Dessert</span>
+                <p>Closes at 9:00 PM</p>
+                <a class="btn" href="https://maps.app.goo.gl/F6X8KD4C7uTAVqz3A" target="_blank" rel="noopener">📍
+                  Maps</a>
               </div>
 
             </div><!-- /dining-grid -->
@@ -1437,9 +1482,9 @@
   <footer>
     <div class="container">
       <!-- ↓ CHANGE FOOTER TEXT ↓ -->
-      <p>🌲 SLC → Jackson Hole · Weekend Adventure · Have a safe trip!</p>
-      <p style="margin-top:.3rem;font-size:.75rem;">Weather via <a href="https://open-meteo.com"
-          target="_blank">Open-Meteo</a> (open-source, no key needed). Checklist saved locally on your device.</p>
+      <p>🌲 SLC → Jackson Hole</p>
+      <!-- <p style="margin-top:.3rem;font-size:.75rem;">Weather via <a href="https://open-meteo.com"
+          target="_blank">Open-Meteo</a> (open-source, no key needed). Checklist saved locally on your device.</p> -->
     </div>
   </footer>
 
