@@ -817,31 +817,75 @@
         scroll-snap-align: start;
       }
 
-      /* Force forecast days inside each card to lay out horizontally */
-      #forecast-jackson,
-      #forecast-teton,
-      #forecast-yellowstone {
-        display: flex !important;
-        flex-direction: row !important;
-        overflow-x: auto;
-        gap: 8px;
-        scrollbar-width: none;
-        padding-bottom: 4px;
-      }
-
-      #forecast-jackson::-webkit-scrollbar,
-      #forecast-teton::-webkit-scrollbar,
-      #forecast-yellowstone::-webkit-scrollbar {
-        display: none;
-      }
-
-      /* Each day tile: fixed width so they don't squish */
       #forecast-jackson>div,
       #forecast-teton>div,
       #forecast-yellowstone>div {
         flex: 0 0 110px;
         min-width: 110px;
       }
+
+      /* Itinerary — horizontal swipeable day cards */
+      #itinerary .section-label {
+        /* stays static above the scroll track */
+      }
+
+      #itinerary {
+        overflow: hidden;
+        /* prevents bleed outside section */
+      }
+
+      .itinerary-scroll-track {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 12px;
+        margin-left: -16px;
+        margin-right: -16px;
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-bottom: 8px;
+        scrollbar-width: none;
+      }
+
+      .itinerary-scroll-track::-webkit-scrollbar {
+        display: none;
+      }
+
+      .itinerary-scroll-track .itinerary-day {
+        flex: 0 0 88%;
+        scroll-snap-align: start;
+        margin-bottom: 0 !important;
+        /* override inline style */
+      }
+    }
+
+    /* Force forecast days inside each card to lay out horizontally */
+    #forecast-jackson,
+    #forecast-teton,
+    #forecast-yellowstone {
+      display: flex !important;
+      flex-direction: row !important;
+      overflow-x: auto;
+      gap: 8px;
+      scrollbar-width: none;
+      padding-bottom: 4px;
+    }
+
+    #forecast-jackson::-webkit-scrollbar,
+    #forecast-teton::-webkit-scrollbar,
+    #forecast-yellowstone::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Each day tile: fixed width so they don't squish */
+    #forecast-jackson>div,
+    #forecast-teton>div,
+    #forecast-yellowstone>div {
+      flex: 0 0 110px;
+      min-width: 110px;
+    }
     }
   </style>
 </head>
@@ -948,52 +992,6 @@
     <div class="container">
 
       <!-- ════════════════════════════════════════════════════════
-           SECTION 1 — ETA CALCULATOR
-           Drive times are defined in the JS below.
-           To edit a destination name/time: find the etaStops array.
-           ════════════════════════════════════════════════════════ -->
-      <section id="eta">
-        <div class="section-label">🕐 Route & ETA Calculator</div>
-
-        <div class="card">
-          <p style="font-size:.9rem;color:var(--stone);margin-bottom:1rem;">
-            Select your route combination and departure time to dynamically calculate arrival windows.
-          </p>
-
-          <div class="eta-input-row">
-            <div>
-              <label for="depart-origin">Starting From</label>
-              <select id="depart-origin" onchange="calcETA()">
-                <option value="slc">Salt Lake City, UT</option>
-                <option value="jackson">Jackson, WY / Lodging</option>
-                <option value="teton">Grand Teton National Park</option>
-                <option value="bear_world">Bear World</option>
-                <option value="yellowstone">Yellowstone (South Entrance)</option>
-                <option value="yellowstone_west">Yellowstone (West Entrance)</option>
-              </select>
-            </div>
-            <div>
-              <label for="depart-time">Departure Time</label>
-              <input type="time" id="depart-time" value="07:00" oninput="calcETA()" />
-            </div>
-            <div>
-              <label for="depart-day">Travel Day</label>
-              <select id="depart-day" onchange="calcETA()">
-                <!-- ↓ CHANGE THESE DATES to match your trip ↓ -->
-                <option value="0">Saturday, May 30</option>
-                <option value="1">Sunday, May 31</option>
-                <option value="2">Monday, June 1</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- ETA result cards (populated by JS) -->
-          <div class="eta-results" id="eta-results"></div>
-
-        </div><!-- /card -->
-      </section><!-- /eta -->
-
-      <!-- ════════════════════════════════════════════════════════
            SECTION 2 — LODGING
            Add as many .lodging-card divs as you have nights.
            Replace placeholder text with your real booking details.
@@ -1066,200 +1064,204 @@
            ════════════════════════════════════════════════════════ -->
       <section id="itinerary">
         <div class="section-label">🗺️ Itinerary</div>
+        <div class="itinerary-scroll-track">
 
-        <!-- ── DAY 1 ──────────────────────────────────────────── -->
-        <div class="itinerary-day card" style="margin-bottom:1.2rem;">
-          <div class="day-header">
-            <!-- ↓ CHANGE DAY LABEL & TITLE ↓ -->
-            <span class="day-pill">Day 1 · Sat May 30</span>
-            <span class="day-title">Grand Teton</span>
-          </div>
 
-          <ul class="stop-list">
+          <!-- ── DAY 1 ──────────────────────────────────────────── -->
+          <div class="itinerary-day card" style="margin-bottom:1.2rem;">
+            <div class="day-header">
+              <!-- ↓ CHANGE DAY LABEL & TITLE ↓ -->
+              <span class="day-pill">Day 1 · Sat May 30</span>
+              <span class="day-title">Grand Teton</span>
+            </div>
 
-            <!-- ── STOP: SLC DEPARTURE ──
+            <ul class="stop-list">
+
+              <!-- ── STOP: SLC DEPARTURE ──
                  Edit time and description below. -->
-            <li>
-              <div class="stop-time">Depart at: 7:00 AM</div>
-              <div class="stop-name">Go to Yellowstone Bear World</div>
-              <div class="stop-desc">~3hr 23min drive.</div>
-            </li>
-            <li>
-              <div class="stop-time">10:30 AM - 12:45 PM</div>
-              <div class="stop-name">Yellowstone Bear World</div>
-              <div class="stop-desc">Couple hours. See bears</div>
-            </li>
+              <li>
+                <div class="stop-time">Depart at: 7:00 AM</div>
+                <div class="stop-name">Go to Yellowstone Bear World</div>
+                <div class="stop-desc">~3hr 23min drive.</div>
+              </li>
+              <li>
+                <div class="stop-time">10:30 AM - 12:45 PM</div>
+                <div class="stop-name">Yellowstone Bear World</div>
+                <div class="stop-desc">Couple hours. See bears</div>
+              </li>
 
-            <!-- ── STOP: Craig Thomas Discovery and Visitor Center, 1 Teton Park Rd, Moose, WY 83012 ── -->
-            <li>
-              <div class="stop-time">2:30 PM - 5:15 PM</div>
-              <div class="stop-name">Grand Teton - Jenny Lake</div>
-              <!-- ↓ Edit description ↓ -->
-              <div class="stop-desc">2hr 30min drive. Specifically <b>Jenny Lake Parking</b></div>
-              <div class="stop-desc"><b>Hiking</b>:<a
-                  href="https://www.alltrails.com/trail/us/wyoming/hidden-falls-trail--2" target="_blank">
-                  Hidden Falls</a> & <a
-                  href="https://www.alltrails.com/explore/custom-routes/custom-route-3e22838?u=i&sh=il5lzf"
-                  target="_blank">Inspiration Point</a>
-              </div>
-              <!-- <span class="stop-tip">Optional</span> -->
-            </li>
+              <!-- ── STOP: Craig Thomas Discovery and Visitor Center, 1 Teton Park Rd, Moose, WY 83012 ── -->
+              <li>
+                <div class="stop-time">2:30 PM - 5:15 PM</div>
+                <div class="stop-name">Grand Teton - Jenny Lake</div>
+                <!-- ↓ Edit description ↓ -->
+                <div class="stop-desc">2hr 30min drive. Specifically <b>Jenny Lake Parking</b></div>
+                <div class="stop-desc"><b>Hiking</b>:<a
+                    href="https://www.alltrails.com/trail/us/wyoming/hidden-falls-trail--2" target="_blank">
+                    Hidden Falls</a> & <a
+                    href="https://www.alltrails.com/explore/custom-routes/custom-route-3e22838?u=i&sh=il5lzf"
+                    target="_blank">Inspiration Point</a>
+                </div>
+                <!-- <span class="stop-tip">Optional</span> -->
+              </li>
 
-            <!-- ── STOP: String Lake ── -->
-            <li>
-              <div class="stop-time">OPTIONAL</div>
-              <div class="stop-name">Signal Mountain</div>
-              <div class="stop-desc">Address: <a href="https://maps.app.goo.gl/Tc99XdcF5eB3SAGY9" target="_blank">Signal
-                  Mountain</a>
-              </div>
-              <span class="stop-tip">Views 📸</span>
-            </li>
+              <!-- ── STOP: String Lake ── -->
+              <li>
+                <div class="stop-time">OPTIONAL</div>
+                <div class="stop-name">Signal Mountain</div>
+                <div class="stop-desc">Address: <a href="https://maps.app.goo.gl/Tc99XdcF5eB3SAGY9"
+                    target="_blank">Signal
+                    Mountain</a>
+                </div>
+                <span class="stop-tip">Views 📸</span>
+              </li>
 
-            <li>
-              <div class="stop-time">OPTIONAL</div>
-              <div class="stop-name">String Lake</div>
-              <div class="stop-desc">Address: <a href="https://maps.app.goo.gl/PKxUBw6AkXZTeUCo9" target="_blank">Alta,
-                  WY 83414</a>
-              </div>
-              <span class="stop-tip">Views 📸</span>
-            </li>
+              <li>
+                <div class="stop-time">OPTIONAL</div>
+                <div class="stop-name">String Lake</div>
+                <div class="stop-desc">Address: <a href="https://maps.app.goo.gl/PKxUBw6AkXZTeUCo9"
+                    target="_blank">Alta,
+                    WY 83414</a>
+                </div>
+                <span class="stop-tip">Views 📸</span>
+              </li>
 
-            <!-- ── STOPS ── -->
-            <li>
-              <div class="stop-time">OPTIONAL</div>
-              <div class="stop-name">Taggart Lake <p><b>Address</b>: <a href="https://maps.app.goo.gl/kRrkyY7wJh4g4wSH7"
-                    target="_blank"> Alta, WY 83414
-                  </a></p>
-              </div>
-              <div class="stop-desc"><b>Hiking</b>: <a
-                  href="https://www.alltrails.com/trail/us/wyoming/taggart-lake-loop--2" target="_blank"> Taggart Lake
-                  Trail</a></div>
-              <span class="stop-tip">3.8 miles</span>
-            </li>
+              <!-- ── STOPS ── -->
+              <li>
+                <div class="stop-time">OPTIONAL</div>
+                <div class="stop-name">Taggart Lake <p><b>Address</b>: <a
+                      href="https://maps.app.goo.gl/kRrkyY7wJh4g4wSH7" target="_blank"> Alta, WY 83414
+                    </a></p>
+                </div>
+                <div class="stop-desc"><b>Hiking</b>: <a
+                    href="https://www.alltrails.com/trail/us/wyoming/taggart-lake-loop--2" target="_blank"> Taggart Lake
+                    Trail</a></div>
+                <span class="stop-tip">3.8 miles</span>
+              </li>
 
-            <li>
-              <div class="stop-time">OPTIONAL</div>
-              <div class="stop-name">Cathedral Group Turnout</div>
-              <div class="stop-desc"><b>Address</b>: <a href="https://maps.app.goo.gl/xmCPVYaUF6GeV82o8"
-                  target="_blank"> Alta, WY 83414</a> </div>
-              <span class="stop-tip">Views 📸 <p>On the way to Signal Mountain</p></span>
-            </li>
+              <li>
+                <div class="stop-time">OPTIONAL</div>
+                <div class="stop-name">Cathedral Group Turnout</div>
+                <div class="stop-desc"><b>Address</b>: <a href="https://maps.app.goo.gl/xmCPVYaUF6GeV82o8"
+                    target="_blank"> Alta, WY 83414</a> </div>
+                <span class="stop-tip">Views 📸 <p>On the way to Signal Mountain</p></span>
+              </li>
 
-            <li>
-              <div class="stop-time">OPTIONAL</div>
-              <div class="stop-name">Scenic loop drive</div>
-              <div class="stop-desc">From Colter Bay to Jackson</div>
-              <!-- <span class="stop-tip">🦌 Elk antler arches at Town Square</span> -->
-            </li>
+              <li>
+                <div class="stop-time">OPTIONAL</div>
+                <div class="stop-name">Scenic loop drive</div>
+                <div class="stop-desc">From Colter Bay to Jackson</div>
+                <!-- <span class="stop-tip">🦌 Elk antler arches at Town Square</span> -->
+              </li>
 
-            <li>
-              <div class="stop-time">No ETA</div>
-              <div class="stop-name">Dinner in Jackson</div>
-              <div class="stop-desc">See dining recommendations below.</div>
-              <!-- <span class="stop-tip">🦌 Elk antler arches at Town Square</span> -->
-            </li>
+              <li>
+                <div class="stop-time">No ETA</div>
+                <div class="stop-name">Dinner in Jackson</div>
+                <div class="stop-desc">See dining recommendations below.</div>
+                <!-- <span class="stop-tip">🦌 Elk antler arches at Town Square</span> -->
+              </li>
 
 
-          </ul>
-        </div><!-- /day 1 -->
+            </ul>
+          </div><!-- /day 1 -->
 
-        <!-- ── DAY 2 ──────────────────────────────────────────── -->
-        <div class="itinerary-day card" style="margin-bottom:1.2rem;">
-          <div class="day-header">
-            <!-- ↓ CHANGE DAY LABEL & TITLE ↓ -->
-            <span class="day-pill">Day 2 · Sat May 31</span>
-            <span class="day-title">Yellowstone</span>
-          </div>
+          <!-- ── DAY 2 ──────────────────────────────────────────── -->
+          <div class="itinerary-day card" style="margin-bottom:1.2rem;">
+            <div class="day-header">
+              <!-- ↓ CHANGE DAY LABEL & TITLE ↓ -->
+              <span class="day-pill">Day 2 · Sat May 31</span>
+              <span class="day-title">Yellowstone</span>
+            </div>
 
-          <ul class="stop-list">
+            <ul class="stop-list">
 
-            <li>
-              <div class="stop-time">5:15 AM</div>
-              <div class="stop-name">Check out from Hotel</div>
-              <div class="stop-desc">Drive to Mormon Row</div>
-              <span class="stop-tip"> EDIT </span>
-            </li>
+              <li>
+                <div class="stop-time">5:15 AM</div>
+                <div class="stop-name">Check out from Hotel</div>
+                <div class="stop-desc">Drive to Mormon Row</div>
+                <span class="stop-tip"> EDIT </span>
+              </li>
 
-            <li>
-              <div class="stop-time">5:45 AM - 6:15 AM</div>
-              <div class="stop-name">Mormon Row</div>
-              <!-- ↓ Edit description ↓ -->
-              <div class="stop-desc"><b>Address</b>: <a href="https://maps.app.goo.gl/925q4ewUJ2bM1TwL6"
-                  target="_blank"> Moose, WY
-                  83012</a>
-                <p>On the way to Yellowstone</p>
-              </div>
-              <span class="stop-tip">Sunrise at ~6:00 AM</span>
-              <span class="stop-tip">Views 📸</span>
-            </li>
+              <li>
+                <div class="stop-time">5:45 AM - 6:15 AM</div>
+                <div class="stop-name">Mormon Row</div>
+                <!-- ↓ Edit description ↓ -->
+                <div class="stop-desc"><b>Address</b>: <a href="https://maps.app.goo.gl/925q4ewUJ2bM1TwL6"
+                    target="_blank"> Moose, WY
+                    83012</a>
+                  <p>On the way to Yellowstone</p>
+                </div>
+                <span class="stop-tip">Sunrise at ~6:00 AM</span>
+                <span class="stop-tip">Views 📸</span>
+              </li>
 
-            <li>
-              <div class="stop-time">6:30 AM - 7:00 AM</div>
-              <div class="stop-name"> Schwabacher Landing </div>
-              <div class="stop-desc"><b>Address</b>: <a href="https://maps.app.goo.gl/JwtMSCCNgumi2wBb6"
-                  target="_blank"> US-191, Moose, WY 83012</a></div>
-              <span class="stop-tip">Views 📸</span>
-            </li>
+              <li>
+                <div class="stop-time">6:30 AM - 7:00 AM</div>
+                <div class="stop-name"> Schwabacher Landing </div>
+                <div class="stop-desc"><b>Address</b>: <a href="https://maps.app.goo.gl/JwtMSCCNgumi2wBb6"
+                    target="_blank"> US-191, Moose, WY 83012</a></div>
+                <span class="stop-tip">Views 📸</span>
+              </li>
 
-            <li>
-              <div class="stop-time">7:15 AM</div>
-              <div class="stop-name">Snake River Overlook</div>
-              <div class="stop-desc"><b>Address</b>: <a href="https://maps.app.goo.gl/wwaYHVVTz6nhhuwm8"
-                  target="_blank">Moose, WY 83012</a></div>
-              <span class="stop-tip">Views 📸</span>
-            </li>
+              <li>
+                <div class="stop-time">7:15 AM</div>
+                <div class="stop-name">Snake River Overlook</div>
+                <div class="stop-desc"><b>Address</b>: <a href="https://maps.app.goo.gl/wwaYHVVTz6nhhuwm8"
+                    target="_blank">Moose, WY 83012</a></div>
+                <span class="stop-tip">Views 📸</span>
+              </li>
 
-            <li>
-              <div class="stop-time">9:35 AM - 10:30 AM</div>
-              <div class="stop-name">Old Faithful</div>
-              <div class="stop-desc">Enter Vistor Center for prediction board</div>
-              <span class="stop-tip">Views 📸</span>
-            </li>
-            <li>
-              <div class="stop-time">10:45 AM - 11:30 AM</div>
-              <div class="stop-name">Grand Prismatic</div>
-              <div class="stop-desc">Overlook</div>
-              <span class="stop-tip">Views 📸</span>
-            </li>
+              <li>
+                <div class="stop-time">9:35 AM - 10:30 AM</div>
+                <div class="stop-name">Old Faithful</div>
+                <div class="stop-desc">Enter Vistor Center for prediction board</div>
+                <span class="stop-tip">Views 📸</span>
+              </li>
+              <li>
+                <div class="stop-time">10:45 AM - 11:30 AM</div>
+                <div class="stop-name">Grand Prismatic</div>
+                <div class="stop-desc">Overlook</div>
+                <span class="stop-tip">Views 📸</span>
+              </li>
 
-            <li>
-              <div class="stop-time">12:00 PM</div>
-              <div class="stop-name">Norris-Canyon road</div>
-              <div class="stop-desc">Scenic drive only - heading to Yellowstone's Grand Canyon</div>
-            </li>
+              <li>
+                <div class="stop-time">12:00 PM</div>
+                <div class="stop-name">Norris-Canyon road</div>
+                <div class="stop-desc">Scenic drive only - heading to Yellowstone's Grand Canyon</div>
+              </li>
 
-            <li>
-              <div class="stop-time">12:30 PM - 1:00 PM</div>
-              <div class="stop-name">Artist Point</div>
-              <div class="stop-desc">The Grand Canyon of the Yellowstone
-                <p> <b>Address</b>: <a href="https://maps.app.goo.gl/LGbShcg97jzCnUYG7" target="_blank"> Artist
-                    Point</a></p>
-              </div>
-              <span class="stop-tip">Views 📸</span>
-            </li>
+              <li>
+                <div class="stop-time">12:30 PM - 1:00 PM</div>
+                <div class="stop-name">Artist Point</div>
+                <div class="stop-desc">The Grand Canyon of the Yellowstone
+                  <p> <b>Address</b>: <a href="https://maps.app.goo.gl/LGbShcg97jzCnUYG7" target="_blank"> Artist
+                      Point</a></p>
+                </div>
+                <span class="stop-tip">Views 📸</span>
+              </li>
 
-            <li>
-              <div class="stop-time">OPTIONAL</div>
-              <div class="stop-name">The Grand Canyon of the Yellowstone</div>
-              <div class="stop-desc"><a href="https://maps.app.goo.gl/NJs3nHBECyaxbJTs9" target="_blank">Brink of the
-                  Lower
-                  Falls</a> </div>
-              <span class="stop-tip">For hike 🏔️ (Optional)</span>
-            </li>
+              <li>
+                <div class="stop-time">OPTIONAL</div>
+                <div class="stop-name">The Grand Canyon of the Yellowstone</div>
+                <div class="stop-desc"><a href="https://maps.app.goo.gl/NJs3nHBECyaxbJTs9" target="_blank">Brink of the
+                    Lower
+                    Falls</a> </div>
+                <span class="stop-tip">For hike 🏔️ (Optional)</span>
+              </li>
 
-            <li>
-              <div class="stop-time">1:00 PM - 1:45 PM</div>
-              <div class="stop-name">Hayden Valley</div>
-              <div class="stop-desc">Drive through only </div>
-            </li>
-            <li>
-              <div class="stop-time">1:45 PM - 2:30 PM</div>
-              <div class="stop-name">Continue to drive through exit</div>
-              <!-- <div class="stop-desc">Drive through only </div> -->
-            </li>
-          </ul>
-        </div><!-- /day 2 -->
-
+              <li>
+                <div class="stop-time">1:00 PM - 1:45 PM</div>
+                <div class="stop-name">Hayden Valley</div>
+                <div class="stop-desc">Drive through only </div>
+              </li>
+              <li>
+                <div class="stop-time">1:45 PM - 2:30 PM</div>
+                <div class="stop-name">Continue to drive through exit</div>
+                <!-- <div class="stop-desc">Drive through only </div> -->
+              </li>
+            </ul>
+          </div><!-- /day 2 -->
+        </div>
         <!-- ════════════════════════════════════════════════════════
            SECTION 3 — PACKING CHECKLIST
            To ADD an item: copy one <li> block and change the text.
@@ -1474,6 +1476,51 @@
               target="_blank" rel="noopener">AllTrails — Grand Teton</a>
           </div>
         </section>
+        <!-- ════════════════════════════════════════════════════════
+           SECTION 1 — ETA CALCULATOR
+           Drive times are defined in the JS below.
+           To edit a destination name/time: find the etaStops array.
+           ════════════════════════════════════════════════════════ -->
+        <section id="eta">
+          <div class="section-label">🕐 Route & ETA Calculator</div>
+
+          <div class="card">
+            <p style="font-size:.9rem;color:var(--stone);margin-bottom:1rem;">
+              Select your route combination and departure time to dynamically calculate arrival windows.
+            </p>
+
+            <div class="eta-input-row">
+              <div>
+                <label for="depart-origin">Starting From</label>
+                <select id="depart-origin" onchange="calcETA()">
+                  <option value="slc">Salt Lake City, UT</option>
+                  <option value="jackson">Jackson, WY / Lodging</option>
+                  <option value="teton">Grand Teton National Park</option>
+                  <option value="bear_world">Bear World</option>
+                  <option value="yellowstone">Yellowstone (South Entrance)</option>
+                  <option value="yellowstone_west">Yellowstone (West Entrance)</option>
+                </select>
+              </div>
+              <div>
+                <label for="depart-time">Departure Time</label>
+                <input type="time" id="depart-time" value="07:00" oninput="calcETA()" />
+              </div>
+              <div>
+                <label for="depart-day">Travel Day</label>
+                <select id="depart-day" onchange="calcETA()">
+                  <!-- ↓ CHANGE THESE DATES to match your trip ↓ -->
+                  <option value="0">Saturday, May 30</option>
+                  <option value="1">Sunday, May 31</option>
+                  <option value="2">Monday, June 1</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- ETA result cards (populated by JS) -->
+            <div class="eta-results" id="eta-results"></div>
+
+          </div><!-- /card -->
+        </section><!-- /eta -->
 
     </div><!-- /container -->
   </main>
